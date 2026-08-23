@@ -19,9 +19,14 @@
                         <a href="#" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 transition">
                             Products
                         </a>
-                        <a href="#" class="text-sm font-semibold text-slate-500 hover:text-red-600 transition">
-                            Logout
-                        </a>
+                        
+                        <!-- Logout Form -->
+                        <form method="POST" action="{{ route('auth.logout') }}" class="inline">
+                            @csrf
+                            <button type="submit" class="text-sm font-semibold text-slate-500 hover:text-red-600 transition bg-transparent border-0 p-0 cursor-pointer">
+                                Logout
+                            </button>
+                        </form>
                     </div>
 
                 </div>

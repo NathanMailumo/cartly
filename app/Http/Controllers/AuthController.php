@@ -53,4 +53,14 @@ class AuthController extends Controller
             'name' => 'Invalid name or password entered.',
         ])->onlyInput('name');
     }
+    public function logout(Request $request)
+    {
+        // return view('dashboard');
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login');
+
+    }
 }
