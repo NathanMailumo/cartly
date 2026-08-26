@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use App\Models\Auth;
 use Illuminate\Support\Facades\Route;
 
+// AUTH get routes
 Route::get('/', [AuthController::class, 'dashboard'])
     ->name('dashboard');
 
@@ -23,7 +25,7 @@ Route::get('/auth/password/create', [AuthController::class, 'showCreate'])
     ->name('auth.password.create');
 
 
-
+// AUTH post routes
 Route::post('/auth/register', [AuthController::class, 'register'])
     ->name('auth.register');
 
@@ -41,3 +43,24 @@ Route::post('/auth/verify', [AuthController::class, 'verifyCode'])
 
 Route::post('/auth/password/update', [AuthController::class, 'updatePassword'])
     ->name('auth.password.update');
+
+
+
+// Products get routes
+Route::get('/products/addproduct', [ProductController::class, 'showAddProduct'])
+    ->name('addProduct');
+
+Route::get('/products/product', [ProductController::class, 'showProduct'])
+    ->name('products.product');
+
+Route::get('/products/product', [ProductController::class, 'product'])
+    ->name('products.product');
+
+
+// Products post routes
+Route::post('/products/addproduct', [ProductController::class, 'addProduct'])
+    ->name('products.addProduct');
+
+Route::delete('/products/{product}', [ProductController::class, 'destroy'])
+    ->name('products.destroy');
+
