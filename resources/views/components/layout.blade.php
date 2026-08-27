@@ -43,8 +43,8 @@
         </nav>
     @endauth
 
-    <!-- Main Content Wrapper -->
-    <main class="flex-1 flex items-center justify-center p-4">
+    <!-- Main Content Wrapper (Centers guest cards automatically) -->
+    <main class="flex-1 flex flex-col justify-center items-center p-4">
         {{$slot}}
     </main>
 

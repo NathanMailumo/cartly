@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendOtpMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Auth as AuthModel;
 use App\Models\passwordReset;
+use Illuminate\Support\Facades\Mail;
 
 
 class AuthController extends Controller
@@ -41,14 +43,14 @@ class AuthController extends Controller
     }
     public function login(Request $request)
     {
-        $accessfields = $request->validate([
+        $credentials = $request->validate([
             'name' => 'required|string|max:30',
             'password' => 'required|string|min:8',
         ]);
 
-        if (Auth::attempt($accessfields)) {
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('dashboard');
+            return redirect()->intended(route('dashboard'));
         };
         return back()->withErrors([
             'name' => 'Invalid name or password entered.',
@@ -88,8 +90,12 @@ class AuthController extends Controller
             ]
         );
 
+        // send otp mail to user through mailtrap
+        Mail::to($validateEmail['email'])->send(new SendOtpMail($code));
+
         // Store code in session flash data for testing alert display
-        return redirect()->route('auth.verify', ['email' => $validateEmail['email']])->with('otp_code', $code);
+        return redirect()->route('auth.verify', ['email' => $validateEmail['email']])
+            ->with('success', 'A verification code has been sent to your email.');
     }
 
     public function showVerify(Request $request)
