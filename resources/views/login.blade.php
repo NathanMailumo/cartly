@@ -32,7 +32,7 @@
                 class="w-full py-3 px-4 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-xl shadow-sm transition duration-150 active:scale-[0.99] text-sm">Login</button>
 
             <div class="text-center pt-2">
-                <span class="text-sm text-slate-500">Don't have an account? <a href="{{ route('register') }}"
+                <span class="text-sm text-slate-500">Don't have an account? <a href="{{ route('register.form') }}"
                         class="font-semibold text-indigo-600 hover:text-indigo-500">Register</a></span>
             </div>
         </form>

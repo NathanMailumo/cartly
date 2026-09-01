@@ -6,7 +6,7 @@ use App\Mail\SendOtpMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Auth as AuthModel;
+use App\Models\User as AuthModel;
 use App\Models\passwordReset;
 use Illuminate\Support\Facades\Mail;
 
@@ -18,25 +18,7 @@ class AuthController extends Controller
         return view('dashboard');
     }
 
-    public function showRegister()
-    {
-        return view('register');
-    }
-    public function register(Request $request)
-    {
-        $incomingfields = $request->validate([
-            'name' => 'required|string|max:30',
-            'email' => 'required|string|email',
-            'password' => 'required|string|min:8',
-            'contact' => 'required|string|min:11|max:15',
-        ]);
-
-        $incomingfields['password'] = Hash::make($incomingfields['password']);
-
-        AuthModel::create($incomingfields);
-
-        return redirect()->route('dashboard');
-    }
+   
     public function showLogin()
     {
         return view('login');
@@ -144,4 +126,5 @@ class AuthController extends Controller
         // 3. Redirect back to login with success feedback
         return redirect()->route('login')->with('success', 'Your password has been reset successfully!');
     }
+
 }
