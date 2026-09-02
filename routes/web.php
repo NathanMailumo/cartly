@@ -4,16 +4,17 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
 // use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+// use App\Models\User;
+// use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/register/select-role', [RegisterController::class, 'showRoleSelection'])
+Route::get('/register/selectrole', [RegisterController::class, 'showRoleSelection'])
     ->name('register.form');
 
 // 2. Point {role} to showRegister so it actually passes $role to register.blade.php
@@ -59,7 +60,7 @@ Route::get('/buyer/dashboard', function () {
     if (!Auth::check() || Auth::user()->role !== 'buyer') {
         return redirect()->route('login');
     }
-    return view('buyer.dashboard');
+    return view('buyer.buyerdash');
 })->name('buyer.dashboard');
 
 // seller Route
@@ -67,5 +68,8 @@ Route::get('/seller/dashboard', function () {
     if (!Auth::check() || Auth::user()->role !== 'seller') {
         return redirect()->route('login');
     }
-    return view('seller.dashboard');
+    return view('seller.sellerdash');
 })->name('seller.dashboard');
+// Route::get('/seller/dashboard', function () {
+//     return 'Seller dashboard route works!';
+// })->name('seller.dashboard');

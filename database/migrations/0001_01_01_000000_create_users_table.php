@@ -62,7 +62,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('store_name')->nullable();
             $table->string('store_slug')->nullable()->unique();
-            $table->string('phone_number')->nullable();
+            // $table->string('phone_number')->nullable();
             $table->text('store_address')->nullable();
             $table->timestamps();
         });

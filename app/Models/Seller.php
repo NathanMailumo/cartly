@@ -12,7 +12,7 @@ class seller extends Model
         'user_id',          
         'store_name',
         'store_slug',
-        'phone_number',
+        // 'phone_number',
         'store_address',
     ];
 
