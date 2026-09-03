@@ -38,7 +38,12 @@
                             </div>
                         </div>
 
-                        <p class="text-slate-600 text-sm mb-4">{{ $product->description }}</p>
+                        <p class="text-slate-600 text-sm mb-2">{{ $product->description }}</p>
+                        @if($product->category)
+                            <p class="text-xs text-slate-500">Category: {{ $product->category->categoryname }}</p>
+                        @else
+                            <p class="text-xs text-slate-500">Category: Unspecified</p>
+                        @endif
                     </div>
 
                     <div class="pt-4 border-t border-slate-100 flex items-center justify-between">

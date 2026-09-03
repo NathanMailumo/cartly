@@ -22,12 +22,14 @@ class ProductController extends Controller
         $validated = $request->validate([
             'productname' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'productprice' => 'required|integer|max:255'
+            'productprice' => 'required|integer|max:255',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         $validated['seller_id'] = Auth::user()->seller->id;
 
         Products::create($validated);
+
 
         return redirect()->route("products.product")
             ->with('Product Created Successfully');
@@ -38,7 +40,7 @@ class ProductController extends Controller
         // $products = Products::all();
         $sellerId = Auth::user()->seller->id;
 
-        $products = Products::where('seller_id', $sellerId)->latest()->get();
+        $products = Products::where('seller_id', $sellerId)->with('category')->latest()->get();
 
         return view('products.product', compact('products'));
     }
@@ -68,6 +70,7 @@ class ProductController extends Controller
             'productname' => 'required|string|max:255',
             'description' => 'required|string',
             'productprice' => 'required|numeric',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         $product->update($validated);

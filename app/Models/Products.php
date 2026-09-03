@@ -12,6 +12,12 @@ class Products extends Model
         'seller_id',
         'productname',
         'description',
-        'productprice'
+        'productprice',
+        'category_id',
     ];
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
 }
