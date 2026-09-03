@@ -18,11 +18,11 @@
                     </div>
                     <div class="p-4 flex-1 flex flex-col justify-between">
                         <div>
-                            <h3 class="font-bold text-white group-hover:text-amber-400 transition">{{ $product->name }}</h3>
+                            <h3 class="font-bold text-white group-hover:text-amber-400 transition">{{ $product->productname }}</h3>
                             <p class="text-slate-400 text-xs mt-1 line-clamp-2">{{ $product->description }}</p>
                         </div>
                         <div class="mt-4 flex items-center justify-between">
-                            <span class="text-lg font-black text-amber-400">${{ number_format($product->price, 2) }}</span>
+                            <span class="text-lg font-black text-amber-400">${{ number_format($product->productprice, 2) }}</span>
                             <button class="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-lg text-xs transition">
                                 Add to Cart
                             </button>

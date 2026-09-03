@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BuyerController;
 // use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -56,20 +57,10 @@ Route::put('/products/{product}', [ProductController::class, 'update'])->name('p
 
 
 // Buyer Route
-Route::get('/buyer/dashboard', function () {
-    if (!Auth::check() || Auth::user()->role !== 'buyer') {
-        return redirect()->route('login');
-    }
-    return view('buyer.buyerdash');
-})->name('buyer.dashboard');
+Route::get('/buyer/dashboard', [BuyerController::class, 'buyerdash'])->name('buyer.dashboard');
 
 // seller Route
-Route::get('/seller/dashboard', function () {
-    if (!Auth::check() || Auth::user()->role !== 'seller') {
-        return redirect()->route('login');
-    }
-    return view('seller.sellerdash');
-})->name('seller.dashboard');
+Route::get('/seller/dashboard', [ProductController::class, 'sellerdash'])->name('seller.dashboard');
 // Route::get('/seller/dashboard', function () {
 //     return 'Seller dashboard route works!';
 // })->name('seller.dashboard');

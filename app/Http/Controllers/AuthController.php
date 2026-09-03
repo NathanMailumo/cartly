@@ -15,7 +15,13 @@ class AuthController extends Controller
 {
     public function dashboard()
     {
-        return view('dashboard');
+       if (Auth::check()) {
+        $user = Auth::user();
+        return $user->role === 'seller' 
+            ? redirect()->route('seller.dashboard') 
+            : redirect()->route('buyer.dashboard');
+    }
+    return view('welcome');
     }
 
    
@@ -32,6 +38,16 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            // return redirect()->intended(route('dashboard'));
+            $user = Auth::user();
+
+            if ($user->role === 'seller') {
+                return redirect()->intended(route('seller.dashboard'));
+            }
+
+            if ($user->role === 'buyer') {
+                return redirect()->intended(route('buyer.dashboard'));
+            }
             return redirect()->intended(route('dashboard'));
         };
         return back()->withErrors([
@@ -56,7 +72,7 @@ class AuthController extends Controller
     public function reset(Request $request)
     {
         $validateEmail = $request->validate([
-            'email' => 'required|email|string|exists:auths,email',
+            'email' => 'required|email|string|exists:users,email',
         ], [
             'email.exists' => 'Invalid email',
         ]);
@@ -114,7 +130,7 @@ class AuthController extends Controller
     public function updatePassword(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|string|exists:auths,email',
+            'email' => 'required|email|string|exists:users,email',
             'password' => 'required|string|min:8|confirmed', // Automatically matches 'password_confirmation'
         ]);
 

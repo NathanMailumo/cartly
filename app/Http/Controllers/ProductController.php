@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Products;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+    public function sellerdash(){
+        return view('seller.sellerdash');
+    }
+    
     public function showAddProduct()
     {
         return view('products.addproduct');
@@ -20,6 +25,8 @@ class ProductController extends Controller
             'productprice' => 'required|integer|max:255'
         ]);
 
+        $validated['seller_id'] = Auth::user()->seller->id;
+
         Products::create($validated);
 
         return redirect()->route("products.product")
@@ -28,7 +35,10 @@ class ProductController extends Controller
 
     public function showProduct()
     {
-        $products = Products::all();
+        // $products = Products::all();
+        $sellerId = Auth::user()->seller->id;
+
+        $products = Products::where('seller_id', $sellerId)->latest()->get();
 
         return view('products.product', compact('products'));
     }
