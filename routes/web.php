@@ -58,6 +58,7 @@ Route::put('/products/{product}', [ProductController::class, 'update'])->name('p
 
 // Buyer Route
 Route::get('/buyer/dashboard', [BuyerController::class, 'buyerdash'])->name('buyer.dashboard');
+Route::get('/buyer/browse', [BuyerController::class, 'buyerCategoryDash'])->name('buyer.browse');
 
 // seller Route
 Route::get('/seller/dashboard', [ProductController::class, 'sellerdash'])->name('seller.dashboard');

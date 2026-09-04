@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="flex items-center space-x-6 shrink-0">
-                            <a href="{{ route('products.product') }}" class="text-sm font-semibold text-slate-300 hover:text-amber-400 transition flex items-center gap-2">
+                            <a href="{{ route('buyer.browse') }}" class="text-sm font-semibold text-slate-300 hover:text-amber-400 transition flex items-center gap-2">
                                 <i class="fa-solid fa-border-all"></i> Browse
                             </a>
 
@@ -91,7 +91,7 @@
     </nav>
 
     <!-- Main Content Wrapper -->
-    <main class="flex-1 flex flex-col justify-center items-center p-4">
+    <main class="flex-1 flex flex-col">
         {{$slot}}
     </main>
 

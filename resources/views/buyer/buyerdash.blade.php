@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:title>Shop Products</x-slot:title>
 
-    <div class="max-w-7xl w-full mx-auto px-4 py-8">
+    <div class="w-full px-4 py-8 max-w-7xl mx-auto">
         <div class="flex items-center justify-between mb-8 border-b border-slate-800 pb-4">
             <div>
                 <h1 class="text-2xl font-black text-white tracking-tight">Explore Products</h1>
