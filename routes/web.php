@@ -65,3 +65,14 @@ Route::get('/seller/dashboard', [ProductController::class, 'sellerdash'])->name(
 // Route::get('/seller/dashboard', function () {
 //     return 'Seller dashboard route works!';
 // })->name('seller.dashboard');
+
+// cart route
+Route::get('/buyer/cart', [BuyerController::class, 'showCart'])->name('buyer.cart');
+Route::post('/buyer/cart', [BuyerController::class, 'addToCart'])->name('buyer.addToCart');
+Route::post('/buyer/cart/update', [BuyerController::class, 'updateCart'])->name('buyer.updateCart');
+Route::post('/buyer/cart/remove', [BuyerController::class, 'removeFromCart'])->name('buyer.removeFromCart');
+
+// checkout route (view only)
+Route::view('/buyer/checkout', 'buyer.checkout')->name('buyer.checkout');
+
+

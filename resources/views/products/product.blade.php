@@ -49,6 +49,11 @@
                     <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
                         <span class="text-xs uppercase font-semibold text-slate-400">Price</span>
                         <span class="text-lg font-extrabold text-indigo-600">${{ $product->productprice }}</span>
+                        <div class="flex items-center space-x-2 mt-2">
+                            <button type="button" class="px-2 py-1 bg-slate-300 text-slate-800 rounded-l" onclick="this.nextElementSibling.stepDown();">-</button>
+                            <input type="number" min="1" value="1" class="w-12 text-center border-t border-b border-slate-300 focus:outline-none" />
+                            <button type="button" class="px-2 py-1 bg-slate-300 text-slate-800 rounded-r" onclick="this.previousElementSibling.stepUp();">+</button>
+                        </div>
                     </div>
                 </div>
             @empty

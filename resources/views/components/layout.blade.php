@@ -42,10 +42,13 @@
                                 <i class="fa-solid fa-border-all"></i> Browse
                             </a>
 
-                            <a href="#" class="relative text-slate-300 hover:text-amber-400 transition flex items-center gap-1.5 font-semibold text-sm">
+                            @php
+                                $cartBadgeCount = \App\Models\cart::where('buyer_id', Auth::id())->sum('quantity');
+                            @endphp
+                            <a href="{{route('buyer.cart')}}" class="relative text-slate-300 hover:text-amber-400 transition flex items-center gap-1.5 font-semibold text-sm">
                                 <i class="fa-solid fa-cart-shopping text-lg"></i>
                                 <span class="hidden sm:inline">Cart</span>
-                                <span class="bg-amber-500 text-slate-950 font-bold text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                                <span class="bg-amber-500 text-slate-950 font-bold text-xs rounded-full h-5 w-5 flex items-center justify-center">{{ $cartBadgeCount }}</span>
                             </a>
 
                             <form method="POST" action="{{ route('auth.logout') }}" class="inline">
