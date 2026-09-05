@@ -246,10 +246,10 @@
                             <p class="text-[11px] text-slate-500 text-right">Taxes included if applicable</p>
                         </div>
 
-                        <a href="{{ route('buyer.checkout') }}" 
+                        <a href="{{ route('buyer.order') }}" 
                             class="w-full py-3.5 px-4 bg-amber-500 hover:bg-amber-600 active:scale-[0.99] text-slate-950 font-black rounded-xl text-sm transition-all shadow-lg hover:shadow-amber-500/25 flex items-center justify-center gap-2 group cursor-pointer text-center">
-                            <i class="fa-solid fa-lock text-xs opacity-75 group-hover:opacity-100 transition"></i>
-                            Proceed to Checkout
+                            <i class="fa-solid fa-box-open text-xs opacity-80 group-hover:opacity-100 transition"></i>
+                            <span>View Order & Delivery</span>
                             <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
                         </a>
 

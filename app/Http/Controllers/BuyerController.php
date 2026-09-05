@@ -102,4 +102,20 @@ class BuyerController extends Controller
 
         return back()->with('success', 'Product removed from cart.');
     }
+
+    public function showOrder()
+    {
+        $cartItems = cart::where('buyer_id', Auth::id())->with('products.category')->get();
+
+        $subtotal = 0;
+        foreach ($cartItems as $item) {
+            $subtotal += ($item->products->productprice ?? 0) * $item->quantity;
+        }
+
+        $total = $subtotal;
+        $estimatedDate = now()->addDays(4)->format('l, F j, Y');
+
+        return view('buyer.order', compact('cartItems', 'subtotal', 'total', 'estimatedDate'));
+    }
 }
+

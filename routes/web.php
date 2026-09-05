@@ -72,7 +72,8 @@ Route::post('/buyer/cart', [BuyerController::class, 'addToCart'])->name('buyer.a
 Route::post('/buyer/cart/update', [BuyerController::class, 'updateCart'])->name('buyer.updateCart');
 Route::post('/buyer/cart/remove', [BuyerController::class, 'removeFromCart'])->name('buyer.removeFromCart');
 
-// checkout route (view only)
-Route::view('/buyer/checkout', 'buyer.checkout')->name('buyer.checkout');
+// order / checkout route
+Route::get('/buyer/order', [BuyerController::class, 'showOrder'])->name('buyer.order');
+Route::get('/buyer/checkout', fn() => redirect()->route('buyer.order'));
 
 
