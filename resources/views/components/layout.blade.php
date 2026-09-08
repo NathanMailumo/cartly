@@ -75,17 +75,6 @@
 </head>
 <body class="min-h-screen flex flex-col antialiased selection:bg-[#161413] selection:text-[#f7f4ee]">
 
-    <!-- Global Top Utility Notice -->
-    <header class="w-full border-b border-[#231f1d] bg-[#f7f4ee] text-[11px] font-editorial-sans uppercase tracking-widest text-[#5e5953]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-between">
-            <span class="hidden sm:inline">Vol. VIII No. 17 · Est. 2024</span>
-                <span class="text-center font-semibold text-[#161413] tracking-[0.15em] mx-auto sm:mx-0">
-                <i class="fa-solid fa-star text-[8px] mr-1"></i> Complimentary Shipping on All Orders <i class="fa-solid fa-star text-[8px] ml-1"></i>
-            </span>
-            <span class="hidden sm:inline">{{ date('l, F j, Y') }}</span>
-        </div>
-    </header>
-
     <!-- Main Content Wrapper -->
     <main class="flex-1 flex flex-col">
         @auth
@@ -130,12 +119,42 @@
         {{$slot}}
     </main>
 
-    <!-- Newspaper Editorial Footer -->
-    <footer class="mt-auto border-t-2 border-[#231f1d] bg-[#f7f4ee] text-[11px] font-editorial-sans uppercase text-[#5e5953] py-4">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-            <span>All pieces are authenticated · Easybuy Marketplace Archive</span>
-            <span class="hidden sm:inline text-xs"><i class="fa-solid fa-star"></i></span>
-            <span>&copy; {{ date('Y') }} Easybuy, Inc.</span>
+    <footer class="mt-auto border-t-2 border-[#231f1d] bg-[#f7f4ee] text-[#5e5953]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 border-b border-[#cfc8bc] pb-7">
+                <div>
+                    <a href="{{ url('/') }}" class="font-masthead text-2xl font-black text-[#161413] hover:opacity-70 transition">Easybuy</a>
+                    <p class="font-serif-body text-sm leading-relaxed mt-2 max-w-xs">
+                        A simple marketplace for buying and selling everyday products across Nigeria.
+                    </p>
+                </div>
+
+                <div>
+                    <h2 class="font-editorial-sans text-[9px] uppercase tracking-[0.2em] text-[#161413] mb-3">Explore</h2>
+                    <div class="flex flex-col gap-2 font-editorial-sans text-[10px] uppercase tracking-[0.12em]">
+                        <a href="{{ route('buyer.browse') }}" class="hover:text-[#161413] transition"><i class="fa-solid fa-arrow-right text-[9px] mr-2"></i>Browse Products</a>
+                        <a href="{{ url('/') }}#how-it-works" class="hover:text-[#161413] transition"><i class="fa-solid fa-arrow-right text-[9px] mr-2"></i>How It Works</a>
+                        <a href="{{ url('/') }}#reviews" class="hover:text-[#161413] transition"><i class="fa-solid fa-arrow-right text-[9px] mr-2"></i>Reviews</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="font-editorial-sans text-[9px] uppercase tracking-[0.2em] text-[#161413] mb-3">Need Help?</h2>
+                    <p class="font-serif-body text-sm leading-relaxed">
+                        Sign in to manage your orders, cart, or product listings.
+                    </p>
+                    <div class="flex items-center gap-4 mt-3 text-[#161413]">
+                        <a href="{{ route('login') }}" title="Sign in" class="hover:text-[#787167] transition"><i class="fa-solid fa-right-to-bracket"></i></a>
+                        <a href="{{ route('register.form') }}" title="Register" class="hover:text-[#787167] transition"><i class="fa-solid fa-user-plus"></i></a>
+                        <span title="Secure marketplace"><i class="fa-solid fa-shield-halved"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-2 pt-4 text-center sm:text-left font-editorial-sans text-[9px] uppercase tracking-[0.12em]">
+                <span><i class="fa-solid fa-check mr-1"></i> Trusted products and sellers</span>
+                <span>&copy; {{ date('Y') }} Easybuy, Inc.</span>
+            </div>
         </div>
     </footer>
 

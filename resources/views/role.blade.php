@@ -12,7 +12,7 @@
                 <p class="font-serif-body text-sm text-[#5e5953] text-center mt-2 mb-7">Choose how you would like to participate in Easybuy.</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <a href="{{ route('register', ['role' => 'buyer']) }}" class="border border-[#cfc8bc] bg-[#f4efe6] hover:bg-[#161413] hover:text-[#f7f4ee] p-5 transition group">
-                        <i class="fa-solid fa-bag-shopping text-xl mb-5"></i>
+                        <i class="fa-solid fa-Cart-shopping text-xl mb-5"></i>
                         <h2 class="font-masthead text-xl font-bold">Buyer</h2>
                         <p class="font-editorial-sans text-[9px] uppercase tracking-[0.15em] mt-1">Curate your collection</p>
                         <span class="block border-t border-current mt-6 pt-3 font-editorial-sans text-[10px] uppercase tracking-[0.18em]">Continue <i class="fa-solid fa-arrow-right text-[9px] ml-1"></i></span>

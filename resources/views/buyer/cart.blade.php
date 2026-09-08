@@ -214,9 +214,9 @@
 
                         <!-- Action Buttons -->
                         <div class="mt-6 space-y-2.5">
-                            <a href="{{ route('buyer.order') }}" 
+                            <a href="{{ route('buyer.checkout') }}"
                                class="w-full py-3.5 bg-[#1a1918] hover:bg-black text-[#f7f4ee] font-editorial-sans text-xs uppercase tracking-[0.2em] transition flex items-center justify-center gap-2 text-center font-semibold">
-                                <span>Place Order</span>
+                                <span>Checkout</span>
                                 <span>&rarr;</span>
                             </a>
 

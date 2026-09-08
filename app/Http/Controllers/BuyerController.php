@@ -105,6 +105,27 @@ class BuyerController extends Controller
 
     public function showOrder()
     {
+        $completedPayment = session('completed_payment');
+
+        if ($completedPayment) {
+            return view('buyer.order', [
+                'cartItems' => collect($completedPayment['cart_items'])->map(function ($item) {
+                    return (object) [
+                        'quantity' => $item['quantity'],
+                        'products' => (object) [
+                            'productname' => $item['productname'],
+                            'description' => $item['description'],
+                            'productprice' => $item['unit_price'],
+                        ],
+                    ];
+                }),
+                'subtotal' => $completedPayment['subtotal'],
+                'total' => $completedPayment['total'],
+                'estimatedDate' => now()->addDays(4)->format('l, F j, Y'),
+                'receipt' => $completedPayment,
+            ]);
+        }
+
         $cartItems = cart::where('buyer_id', Auth::id())->with('products.category')->get();
 
         $subtotal = 0;
@@ -116,6 +137,20 @@ class BuyerController extends Controller
         $estimatedDate = now()->addDays(4)->format('l, F j, Y');
 
         return view('buyer.order', compact('cartItems', 'subtotal', 'total', 'estimatedDate'));
+    }
+
+    public function showCheckout()
+    {
+        $cartItems = cart::where('buyer_id', Auth::id())->with('products.category')->get();
+
+        $subtotal = 0;
+        foreach ($cartItems as $item) {
+            $subtotal += ($item->products->productprice ?? 0) * $item->quantity;
+        }
+        $total = $subtotal;
+
+
+        return view('buyer.checkout', compact('cartItems', 'subtotal', 'total'));
     }
 }
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BuyerController;
+use App\Http\Controllers\PaymentController;
 // use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -72,8 +73,11 @@ Route::post('/buyer/cart', [BuyerController::class, 'addToCart'])->name('buyer.a
 Route::post('/buyer/cart/update', [BuyerController::class, 'updateCart'])->name('buyer.updateCart');
 Route::post('/buyer/cart/remove', [BuyerController::class, 'removeFromCart'])->name('buyer.removeFromCart');
 
-// order / checkout route
+// order /  route
 Route::get('/buyer/order', [BuyerController::class, 'showOrder'])->name('buyer.order');
-Route::get('/buyer/checkout', fn() => redirect()->route('buyer.order'));
+Route::get('/buyer/checkout', [BuyerController::class, 'showCheckout'])->name('buyer.checkout');
 
+//checkout/ paystack route
+Route::post('/payment/initialize', [PaymentController::class, 'initialize_payment'])->name('payment.initialize');
+Route::get('/payment/callback', [PaymentController::class, 'callback'])->name('payment.callback'); 
 

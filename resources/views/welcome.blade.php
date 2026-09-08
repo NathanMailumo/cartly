@@ -67,7 +67,7 @@
 
         <section id="craftsmanship" class="grid grid-cols-2 sm:grid-cols-4 border-y border-[#cfc8bc] mt-8 mb-8">
             <div class="py-5 text-center border-r border-[#cfc8bc]"><i class="fa-solid fa-shield-halved text-[#5e5953] mb-2"></i><strong class="block font-masthead text-lg">Trusted</strong><span class="font-editorial-sans text-[8px] uppercase tracking-[0.15em] text-[#787167]">Reliable sellers</span></div>
-            <div class="py-5 text-center border-r border-[#cfc8bc]"><i class="fa-solid fa-bag-shopping text-[#5e5953] mb-2"></i><strong class="block font-masthead text-lg">Simple</strong><span class="font-editorial-sans text-[8px] uppercase tracking-[0.15em] text-[#787167]">Easy shopping</span></div>
+            <div class="py-5 text-center border-r border-[#cfc8bc]"><i class="fa-solid fa-Cart-shopping text-[#5e5953] mb-2"></i><strong class="block font-masthead text-lg">Simple</strong><span class="font-editorial-sans text-[8px] uppercase tracking-[0.15em] text-[#787167]">Easy shopping</span></div>
             <div class="py-5 text-center border-r border-[#cfc8bc]"><i class="fa-solid fa-naira-sign text-[#5e5953] mb-2"></i><strong class="block font-masthead text-lg">Fair</strong><span class="font-editorial-sans text-[8px] uppercase tracking-[0.15em] text-[#787167]">Prices in naira</span></div>
             <div class="py-5 text-center"><i class="fa-solid fa-truck-fast text-[#5e5953] mb-2"></i><strong class="block font-masthead text-lg">Local</strong><span class="font-editorial-sans text-[8px] uppercase tracking-[0.15em] text-[#787167]">Delivery across Nigeria</span></div>
         </section>
@@ -93,7 +93,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <article class="border border-[#cfc8bc] bg-[#faf8f4] p-5 sm:p-6">
                     <div class="flex items-center gap-3 border-b border-[#dcd7ce] pb-4 mb-4">
-                        <span class="w-10 h-10 flex items-center justify-center bg-[#161413] text-[#f7f4ee]"><i class="fa-solid fa-bag-shopping"></i></span>
+                        <span class="w-10 h-10 flex items-center justify-center bg-[#161413] text-[#f7f4ee]"><i class="fa-solid fa-Cart-shopping"></i></span>
                         <div>
                             <p class="font-editorial-sans text-[9px] uppercase tracking-[0.18em] text-[#787167]">For Buyers</p>
                             <h3 class="font-masthead text-xl font-bold">Shop what you like</h3>
@@ -137,7 +137,7 @@
                     <div class="flex gap-1 text-[#161413] text-[10px] mb-4" aria-label="5 out of 5 stars">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <blockquote class="font-serif-body italic text-base leading-relaxed text-[#3d3833]">“My bag arrived in good condition and looked just like the pictures. Shopping on Easybuy was straightforward.”</blockquote>
+                    <blockquote class="font-serif-body italic text-base leading-relaxed text-[#3d3833]">“My Cart arrived in good condition and looked just like the pictures. Shopping on Easybuy was straightforward.”</blockquote>
                     <p class="font-editorial-sans text-[9px] uppercase tracking-[0.16em] text-[#787167] mt-5">Amara O. · Buyer</p>
                 </article>
                 <article class="border border-[#cfc8bc] bg-[#faf8f4] p-5">
