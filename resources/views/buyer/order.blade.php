@@ -10,10 +10,10 @@
                 <span>Return to Cart</span>
             </a>
             <span class="font-semibold text-[#161413]">✦ Authentication Guaranteed ✦</span>
-            <span>Est. Delivery: {{ $estimatedDate }}</span>
+            {{-- <span>Est. Delivery: {{ $estimatedDate }}</span> --}}
         </div>
 
-        <!-- Masthead -->
+        {{-- <!-- Masthead -->
         <div class="text-center py-6">
             <a href="{{ route('buyer.dashboard') }}" class="inline-block">
                 <h1 class="font-masthead text-5xl sm:text-6xl font-black text-[#161413] tracking-tight hover:opacity-90 transition">
@@ -23,7 +23,7 @@
             <p class="font-editorial-sans text-[9px] tracking-[0.3em] uppercase text-[#6e6860] mt-1">
                 Registry of Acquisitions · Order Confirmation
             </p>
-        </div>
+        </div> --}}
 
         <!-- Double Rule Divider -->
         <div class="w-full border-t-2 border-b border-[#231f1d] py-[1px] mb-8"></div>

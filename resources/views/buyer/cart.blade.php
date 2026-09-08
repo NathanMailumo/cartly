@@ -10,10 +10,10 @@
                 <span>Continue Shopping</span>
             </a>
             <span class="hidden sm:inline font-semibold text-[#161413]">✦ Complimentary Shipping on All Orders ✦</span>
-            <span class="hidden sm:inline">U.S. Edition</span>
+            {{-- <span class="hidden sm:inline">U.S. Edition</span> --}}
         </div>
 
-        <!-- Centered Masthead -->
+        {{-- <!-- Centered Masthead -->
         <div class="text-center py-6">
             <a href="{{ route('buyer.dashboard') }}" class="inline-block">
                 <h1 class="font-masthead text-5xl sm:text-7xl lg:text-8xl font-black text-[#161413] tracking-tight hover:opacity-90 transition">
@@ -30,7 +30,7 @@
             <span>{{ date('l, F j, Y') }}</span>
             <span class="font-bold text-[#161413]">✦ Paris · London · New York ✦</span>
             <span>U.S. Edition</span>
-        </div>
+        </div> --}}
 
         <!-- Order Form Banner Box -->
         <div class="border-2 border-[#231f1d] p-3 text-center mb-8 bg-[#faf8f4]">
