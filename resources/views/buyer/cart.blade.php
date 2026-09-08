@@ -1,77 +1,65 @@
 <x-layout>
-    <x-slot:title>Shopping Cart</x-slot:title>
+    <x-slot:title>Your Selection · Order Form</x-slot:title>
 
-    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {{-- Breadcrumb & Title --}}
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-6 border-b border-slate-800 gap-4 mb-8">
-            <div>
-                <div class="flex items-center gap-2 text-xs text-slate-500 mb-2">
-                    <a href="{{ route('buyer.dashboard') }}" class="hover:text-amber-400 transition">Shop</a>
-                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                    <span class="text-slate-300">Shopping Cart</span>
-                </div>
-                <h1 class="text-3xl font-black text-white tracking-tight flex items-center gap-3">
-                    <i class="fa-solid fa-cart-shopping text-amber-500"></i>
-                    Shopping Cart
-                    @if($cartItems->isNotEmpty())
-                        <span class="text-sm font-semibold bg-slate-800 text-amber-400 px-3 py-1 rounded-full border border-slate-700">
-                            {{ $cartItems->sum('quantity') }} {{ Str::plural('item', $cartItems->sum('quantity')) }}
-                        </span>
-                    @endif
-                </h1>
-            </div>
+    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
 
-            <a href="{{ route('buyer.browse') }}" class="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-amber-400 transition self-start sm:self-auto py-2 px-3 rounded-lg hover:bg-slate-900 border border-transparent hover:border-slate-800">
-                <i class="fa-solid fa-arrow-left"></i>
-                Continue Shopping
+        <!-- Top Header & Navigation -->
+        <div class="flex items-center justify-between py-2 border-b border-[#231f1d] text-[10px] font-editorial-sans uppercase tracking-[0.2em] text-[#5e5953]">
+            <a href="{{ route('buyer.dashboard') }}" class="hover:text-[#161413] transition flex items-center gap-1.5 font-bold">
+                <span>&larr;</span>
+                <span>Continue Shopping</span>
             </a>
+            <span class="hidden sm:inline font-semibold text-[#161413]">✦ Complimentary Shipping on All Orders ✦</span>
+            <span class="hidden sm:inline">U.S. Edition</span>
         </div>
 
-        {{-- Flash Messages --}}
-        @if(session('success'))
-            <div class="mb-6 flex items-center justify-between p-4 rounded-xl bg-emerald-950/70 border border-emerald-800/80 text-emerald-300 text-sm shadow-lg">
-                <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
-                        <i class="fa-solid fa-circle-check"></i>
-                    </div>
-                    <span>{{ session('success') }}</span>
-                </div>
-                <button type="button" onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-emerald-200">
-                    <i class="fa-solid fa-xmark text-xs"></i>
-                </button>
-            </div>
-        @endif
+        <!-- Centered Masthead -->
+        <div class="text-center py-6">
+            <a href="{{ route('buyer.dashboard') }}" class="inline-block">
+                <h1 class="font-masthead text-5xl sm:text-7xl lg:text-8xl font-black text-[#161413] tracking-tight hover:opacity-90 transition">
+                    Cartly
+                </h1>
+            </a>
+            <p class="font-editorial-sans text-[9px] sm:text-[10px] tracking-[0.3em] uppercase text-[#6e6860] mt-1">
+                Luxury Fashion · Authenticated & Curated
+            </p>
+        </div>
 
-        @if($errors->any())
-            <div class="mb-6 p-4 rounded-xl bg-rose-950/70 border border-rose-800/80 text-rose-300 text-sm shadow-lg">
-                <ul class="list-disc list-inside space-y-1">
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+        <!-- Issue Ribbon -->
+        <div class="border-t-2 border-b border-[#231f1d] py-1.5 text-[10px] font-editorial-sans uppercase tracking-[0.2em] text-[#5e5953] flex items-center justify-between mb-6">
+            <span>{{ date('l, F j, Y') }}</span>
+            <span class="font-bold text-[#161413]">✦ Paris · London · New York ✦</span>
+            <span>U.S. Edition</span>
+        </div>
+
+        <!-- Order Form Banner Box -->
+        <div class="border-2 border-[#231f1d] p-3 text-center mb-8 bg-[#faf8f4]">
+            <h2 class="font-editorial-sans text-xs sm:text-sm font-bold tracking-[0.25em] uppercase text-[#161413]">
+                ✦ Your Selection — Order Form ✦
+            </h2>
+            <div class="text-[9px] font-editorial-sans tracking-[0.25em] uppercase text-[#787167] mt-0.5">
+                Reserved for Collection · Authentication Guaranteed
+            </div>
+        </div>
+
+        <!-- Flash Messages -->
+        @if(session('success'))
+            <div class="mb-6 p-3 border border-[#231f1d] bg-[#f0ebe1] text-[#161413] text-xs font-serif-body">
+                ✦ {{ session('success') }}
             </div>
         @endif
 
         @if($cartItems->isEmpty())
-            {{-- Empty Cart State --}}
-            <div class="text-center py-20 px-4 bg-slate-900/60 border border-slate-800 rounded-3xl max-w-2xl mx-auto shadow-2xl">
-                <div class="w-24 h-24 mx-auto rounded-3xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-600 mb-6 shadow-inner">
-                    <i class="fa-solid fa-cart-arrow-down text-4xl text-amber-500/80"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-white mb-2">Your cart is currently empty</h2>
-                <p class="text-slate-400 text-sm max-w-md mx-auto mb-8">
-                    Looks like you haven't added anything to your cart yet. Discover items listed by sellers and find great deals!
+            <!-- Empty State -->
+            <div class="border border-[#231f1d] bg-[#faf8f4] p-12 text-center my-8">
+                <h3 class="font-masthead text-2xl text-[#161413] mb-2">Your Archive Selection is Empty</h3>
+                <p class="font-serif-body italic text-sm text-[#5e5953] mb-6">
+                    No acquisitions have been selected for your order form yet.
                 </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-                    <a href="{{ route('buyer.browse') }}" class="w-full sm:w-auto px-6 py-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-xl text-sm transition-all shadow-lg hover:shadow-amber-500/20 flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-border-all text-xs"></i>
-                        Browse Categories
-                    </a>
-                    <a href="{{ route('buyer.dashboard') }}" class="w-full sm:w-auto px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl text-sm transition border border-slate-700 flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-bag-shopping text-xs"></i>
-                        Explore Products
-                    </a>
-                </div>
+                <a href="{{ route('buyer.dashboard') }}" 
+                   class="inline-block px-6 py-3 bg-[#1a1918] text-[#f7f4ee] font-editorial-sans text-xs uppercase tracking-[0.2em] hover:bg-black transition">
+                    Explore Acquisitions &rarr;
+                </a>
             </div>
         @else
             @php
@@ -80,192 +68,196 @@
                     $itemPrice = $item->products->productprice ?? 0;
                     $subtotal += $itemPrice * $item->quantity;
                 }
-                $shipping = 0.00; // Free shipping
+                $shipping = 0.00; // Complimentary
                 $total = $subtotal + $shipping;
+                $totalCount = $cartItems->sum('quantity');
             @endphp
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                {{-- Cart Items Column (8 cols) --}}
-                <div class="lg:col-span-8 space-y-4">
-                    <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
-                        <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-400">
-                            <span>Product & Details</span>
-                            <span class="hidden sm:inline">Subtotal</span>
-                        </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12">
 
-                        <div class="divide-y divide-slate-800">
+                <!-- Main Order Form Ledger Table (8 cols on lg) -->
+                <div class="lg:col-span-8 overflow-x-auto border border-[#231f1d] bg-[#faf8f4]">
+                    <table class="w-full text-left border-collapse font-serif-body">
+                        <thead>
+                            <tr class="border-b border-[#231f1d] bg-[#f2ede4] font-editorial-sans text-[10px] uppercase tracking-[0.15em] text-[#5e5953]">
+                                <th class="p-3 font-semibold w-24">Item</th>
+                                <th class="p-3 font-semibold">Description</th>
+                                <th class="p-3 font-semibold text-right">Unit Price</th>
+                                <th class="p-3 font-semibold text-center w-28">Qty</th>
+                                <th class="p-3 font-semibold text-right">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-[#e5dfd5]">
                             @foreach($cartItems as $item)
                                 @php
                                     $product = $item->products;
                                     $itemPrice = $product->productprice ?? 0;
                                     $lineTotal = $itemPrice * $item->quantity;
                                 @endphp
-                                <div class="p-6 transition hover:bg-slate-800/30 flex flex-col sm:flex-row gap-5 items-start sm:items-center justify-between">
-                                    {{-- Left: Image & Info --}}
-                                    <div class="flex items-start gap-4 flex-1">
-                                        {{-- Product Image Thumbnail --}}
-                                        <div class="w-24 h-24 shrink-0 rounded-xl bg-slate-800 border border-slate-700 overflow-hidden relative flex items-center justify-center group shadow-md">
-                                            @if(!empty($product->image_url))
-                                                <img src="{{ $product->image_url }}" alt="{{ $product->productname ?? 'Product' }}" class="w-full h-full object-cover">
-                                            @else
-                                                <div class="w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 flex flex-col items-center justify-center text-slate-500">
-                                                    <i class="fa-solid fa-box-open text-2xl text-amber-500/70 mb-1"></i>
-                                                    <span class="text-[9px] font-bold uppercase tracking-wider text-slate-400">Product</span>
-                                                </div>
-                                            @endif
-                                            @if($product && $product->category)
-                                                <span class="absolute bottom-1 right-1 bg-slate-950/80 backdrop-blur-sm text-amber-400 text-[9px] font-bold px-1.5 py-0.5 rounded border border-slate-800">
-                                                    {{ $product->category->categoryname }}
-                                                </span>
-                                            @endif
+                                <tr class="hover:bg-[#ffffff] transition">
+                                    <!-- Item Image -->
+                                    <td class="p-3 align-top">
+                                        <div class="w-20 h-20 border border-[#231f1d] bg-[#e8e2d5] overflow-hidden">
+                                            <img src="{{ !empty($product->image_url) ? $product->image_url : 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=400&q=80' }}" 
+                                                 alt="{{ $product->productname }}" 
+                                                 class="w-full h-full object-cover grayscale contrast-110">
                                         </div>
+                                    </td>
 
-                                        {{-- Details --}}
-                                        <div class="flex-1 min-w-0">
-                                            <h3 class="text-base font-bold text-white hover:text-amber-400 transition truncate">
-                                                {{ $product->productname ?? 'Unknown Product' }}
-                                            </h3>
-                                            <p class="text-xs text-slate-400 line-clamp-1 mt-0.5">
-                                                {{ $product->description ?? 'No description available' }}
-                                            </p>
-                                            <div class="mt-2 flex items-baseline gap-2">
-                                                <span class="text-sm font-black text-amber-400">
-                                                    ${{ number_format($itemPrice, 2) }}
-                                                </span>
-                                                <span class="text-xs text-slate-500">each</span>
-                                            </div>
+                                    <!-- Description & Actions -->
+                                    <td class="p-3 align-top">
+                                        <h4 class="font-masthead font-bold text-base text-[#161413]">
+                                            {{ $product->productname }}
+                                        </h4>
+                                        <p class="font-serif-body italic text-xs text-[#5e5953] mt-0.5 line-clamp-1">
+                                            {{ $product->description }}
+                                        </p>
+                                        <span class="text-[9px] font-editorial-sans uppercase text-[#8c857b] tracking-wider block mt-1">
+                                            SS - 25 · Authenticated
+                                        </span>
 
-                                            {{-- Remove button for mobile --}}
-                                            <form action="{{ route('buyer.removeFromCart') }}" method="POST" class="mt-3 sm:hidden inline-block">
-                                                @csrf
-                                                <input type="hidden" name="cart_id" value="{{ $item->id }}">
-                                                <button type="submit" class="text-xs text-rose-400 hover:text-rose-300 font-semibold inline-flex items-center gap-1.5 transition">
-                                                    <i class="fa-regular fa-trash-can text-xs"></i>
-                                                    Remove
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-
-                                    {{-- Right: Quantity Form & Line Total --}}
-                                    <div class="w-full sm:w-auto flex items-center justify-between sm:justify-end gap-6 pt-3 sm:pt-0 border-t sm:border-t-0 border-slate-800">
-                                        {{-- Quantity Selector Form --}}
-                                        <form action="{{ route('buyer.updateCart') }}" method="POST" class="flex items-center">
+                                        <!-- Remove Form -->
+                                        <form action="{{ route('buyer.removeFromCart') }}" method="POST" class="mt-2 inline-block">
                                             @csrf
                                             <input type="hidden" name="cart_id" value="{{ $item->id }}">
-                                            
-                                            <div class="flex items-center border border-slate-700 bg-slate-950 rounded-xl overflow-hidden shadow-inner">
-                                                <button type="button" 
-                                                    onclick="var inp = this.nextElementSibling; if(inp.value > 1){ inp.stepDown(); inp.form.submit(); }"
-                                                    class="w-8 h-8 flex items-center justify-center bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white transition">
-                                                    <i class="fa-solid fa-minus text-[10px]"></i>
-                                                </button>
-                                                <input type="number" name="quantity" min="1" value="{{ $item->quantity }}" 
-                                                    onchange="this.form.submit()"
-                                                    class="w-12 text-center bg-transparent text-white font-bold text-xs border-none focus:outline-none focus:ring-0 p-0" />
-                                                <button type="button" 
-                                                    onclick="var inp = this.previousElementSibling; inp.stepUp(); inp.form.submit();"
-                                                    class="w-8 h-8 flex items-center justify-center bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white transition">
-                                                    <i class="fa-solid fa-plus text-[10px]"></i>
-                                                </button>
-                                            </div>
-                                        </form>
-
-                                        {{-- Line Subtotal --}}
-                                        <div class="text-right min-w-[5rem]">
-                                            <span class="text-sm font-black text-white block">
-                                                ${{ number_format($lineTotal, 2) }}
-                                            </span>
-                                            <span class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold sm:hidden">
-                                                Subtotal
-                                            </span>
-                                        </div>
-
-                                        {{-- Remove button (Desktop) --}}
-                                        <form action="{{ route('buyer.removeFromCart') }}" method="POST" class="hidden sm:inline-block">
-                                            @csrf
-                                            <input type="hidden" name="cart_id" value="{{ $item->id }}">
-                                            <button type="submit" title="Remove item" class="w-8 h-8 rounded-lg bg-slate-800 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition flex items-center justify-center border border-slate-700 hover:border-rose-500/30">
-                                                <i class="fa-regular fa-trash-can text-xs"></i>
+                                            <button type="submit" class="text-[10px] font-editorial-sans uppercase tracking-widest text-[#787167] hover:text-[#9b2c2c] transition underline cursor-pointer">
+                                                Remove
                                             </button>
                                         </form>
-                                    </div>
-                                </div>
+                                    </td>
+
+                                    <!-- Unit Price -->
+                                    <td class="p-3 align-top text-right font-serif-body font-semibold text-sm text-[#161413]">
+                                        ₦{{ number_format($itemPrice) }}
+                                    </td>
+
+                                    <!-- Quantity Stepper Form -->
+                                    <td class="p-3 align-top text-center">
+                                        <form action="{{ route('buyer.updateCart') }}" method="POST" class="inline-flex items-center border border-[#231f1d] bg-[#f7f4ee]">
+                                            @csrf
+                                            <input type="hidden" name="cart_id" value="{{ $item->id }}">
+                                             <button type="button"
+                                                 onclick="let inp = this.parentNode.querySelector('input[name=\'quantity\']'); if(parseInt(inp.value) > 1){ inp.value = parseInt(inp.value) - 1; this.form.submit(); }"
+                                                 class="w-6 h-6 text-xs text-[#161413] hover:bg-[#161413] hover:text-[#f7f4ee] transition flex items-center justify-center font-bold">
+                                                -
+                                            </button>
+                                            <input type="number" 
+                                                   name="quantity" 
+                                                   min="1" 
+                                                   value="{{ $item->quantity }}" 
+                                                   onchange="this.form.submit()"
+                                                   class="w-8 text-center text-xs bg-transparent border-x border-[#231f1d] font-bold text-[#161413] focus:outline-none py-0.5">
+                                            <button type="button" 
+                                                    onclick="let inp = this.previousElementSibling; inp.value++; this.form.submit();"
+                                                    class="w-6 h-6 text-xs text-[#161413] hover:bg-[#161413] hover:text-[#f7f4ee] transition flex items-center justify-center font-bold">
+                                                +
+                                            </button>
+                                        </form>
+                                    </td>
+
+                                    <!-- Total -->
+                                    <td class="p-3 align-top text-right font-serif-body font-bold text-sm text-[#161413]">
+                                        ₦{{ number_format($lineTotal) }}
+                                    </td>
+                                </tr>
                             @endforeach
-                        </div>
-                    </div>
 
-                    {{-- Bottom helper links --}}
-                    <div class="flex items-center justify-between px-2 pt-2 text-xs text-slate-400">
-                        <span class="flex items-center gap-2">
-                            <i class="fa-solid fa-shield-halved text-amber-500"></i>
-                            Encrypted & secure transaction
-                        </span>
-                        <a href="{{ route('buyer.browse') }}" class="hover:text-amber-400 font-semibold transition">
-                            <i class="fa-solid fa-plus text-[10px] mr-1"></i> Add more items
-                        </a>
+                            <!-- Subtotal Summary Row -->
+                            <tr class="bg-[#f2ede4] font-editorial-sans text-xs uppercase tracking-wider text-[#161413] font-bold">
+                                <td colspan="4" class="p-3 text-left">
+                                    Subtotal ({{ $totalCount }} {{ Str::plural('item', $totalCount) }})
+                                </td>
+                                <td class="p-3 text-right font-serif-body font-black text-base">
+                                    ₦{{ number_format($subtotal) }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Assurance Footnote -->
+                    <div class="p-4 border-t border-[#231f1d] font-serif-body italic text-[11px] text-[#6e6860] bg-[#faf8f4]">
+                        All pieces are authenticated by our in-house curators before dispatch. Delivery within 5–7 working days. Returns accepted within 14 days of receipt in original condition.
+                    </div>
+                </div>
+
+                <!-- Right Column: Order Summary Card (4 cols on lg) -->
+                <div class="lg:col-span-4 sticky top-6">
+                    <div class="border-2 border-[#231f1d] p-6 bg-[#faf8f4] shadow-sm">
+                        <!-- Summary Title -->
+                        <h3 class="font-editorial-sans text-xs font-bold uppercase tracking-[0.2em] text-[#161413] text-center pb-3 border-b border-[#231f1d]">
+                            Order Summary
+                        </h3>
+
+                        <!-- Line Items -->
+                        <div class="py-4 space-y-3 font-serif-body text-sm text-[#3d3833] border-b border-[#dcd7ce]">
+                            <div class="flex items-center justify-between">
+                                <span>Subtotal</span>
+                                <span class="font-semibold text-[#161413]">₦{{ number_format($subtotal) }}</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span>Shipping</span>
+                                <span class="italic text-[#161413]">Complimentary</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span>Authentication</span>
+                                <span class="italic text-[#161413]">Included</span>
+                            </div>
+                        </div>
+
+                        <!-- Total Due -->
+                        <div class="py-4 flex items-baseline justify-between font-serif-body border-b-2 border-[#231f1d]">
+                            <span class="font-editorial-sans text-xs uppercase tracking-wider font-bold text-[#161413]">Total Due</span>
+                            <span class="text-2xl font-black text-[#161413]">
+                                ₦{{ number_format($total) }}
+                            </span>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="mt-6 space-y-2.5">
+                            <a href="{{ route('buyer.order') }}" 
+                               class="w-full py-3.5 bg-[#1a1918] hover:bg-black text-[#f7f4ee] font-editorial-sans text-xs uppercase tracking-[0.2em] transition flex items-center justify-center gap-2 text-center font-semibold">
+                                <span>Place Order</span>
+                                <span>&rarr;</span>
+                            </a>
+
+                            <a href="{{ route('buyer.dashboard') }}" 
+                               class="w-full py-3 border border-[#231f1d] hover:bg-[#e8e2d5] text-[#161413] font-editorial-sans text-xs uppercase tracking-[0.15em] transition flex items-center justify-center gap-2 text-center">
+                                <span>&larr;</span>
+                                <span>Continue Shopping</span>
+                            </a>
+                        </div>
+
+                        <!-- Trust Markers with Diamond Icons (No emojis!) -->
+                        <div class="mt-8 pt-4 border-t border-[#dcd7ce] space-y-1.5 text-[10px] font-editorial-sans uppercase tracking-wider text-[#6e6860]">
+                            <div class="flex items-center gap-1.5">
+                                <span>✦</span>
+                                <span>Authenticated by experts</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span>✦</span>
+                                <span>Complimentary returns, 14 days</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span>✦</span>
+                                <span>Insured & tracked delivery</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span>✦</span>
+                                <span>Secure encrypted checkout</span>
+                            </div>
+                        </div>
+
+                        <!-- Card Footer -->
+                        <div class="mt-6 pt-3 border-t border-[#e5dfd5] text-[9px] font-editorial-sans uppercase text-[#8c857b] leading-tight">
+                            Issue No. 17 · September 2026<br>
+                            All prices listed in Nigerian Naira (₦).<br>
+                            &copy; 2026 Cartly. Est. 2024.
+                        </div>
                     </div>
                 </div>
 
-                {{-- Order Summary Column (4 cols) --}}
-                <div class="lg:col-span-4 sticky top-24">
-                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                        <div class="absolute -right-12 -top-12 w-36 h-36 bg-amber-500/5 rounded-full blur-2xl pointer-events-none"></div>
-
-                        <h2 class="text-lg font-black text-white tracking-tight pb-4 border-b border-slate-800 flex items-center justify-between">
-                            <span>Order Summary</span>
-                            <i class="fa-solid fa-receipt text-slate-600 text-base"></i>
-                        </h2>
-
-                        <div class="py-4 space-y-3 text-sm border-b border-slate-800">
-                            <div class="flex items-center justify-between text-slate-400">
-                                <span>Items Subtotal</span>
-                                <span class="font-bold text-white">${{ number_format($subtotal, 2) }}</span>
-                            </div>
-                            <div class="flex items-center justify-between text-slate-400">
-                                <span class="flex items-center gap-1.5">
-                                    Shipping
-                                    <span class="text-[10px] bg-emerald-500/20 text-emerald-400 font-bold px-1.5 py-0.5 rounded">FREE</span>
-                                </span>
-                                <span class="font-bold text-emerald-400">Free</span>
-                            </div>
-                            <div class="flex items-center justify-between text-slate-400">
-                                <span>Estimated Tax</span>
-                                <span class="font-bold text-slate-300">$0.00</span>
-                            </div>
-                        </div>
-
-                        {{-- Total --}}
-                        <div class="py-5">
-                            <div class="flex items-baseline justify-between mb-1">
-                                <span class="text-sm font-semibold text-slate-300">Total</span>
-                                <span class="text-2xl font-black text-amber-400">
-                                    ${{ number_format($total, 2) }}
-                                </span>
-                            </div>
-                            <p class="text-[11px] text-slate-500 text-right">Taxes included if applicable</p>
-                        </div>
-
-                        <a href="{{ route('buyer.order') }}" 
-                            class="w-full py-3.5 px-4 bg-amber-500 hover:bg-amber-600 active:scale-[0.99] text-slate-950 font-black rounded-xl text-sm transition-all shadow-lg hover:shadow-amber-500/25 flex items-center justify-center gap-2 group cursor-pointer text-center">
-                            <i class="fa-solid fa-box-open text-xs opacity-80 group-hover:opacity-100 transition"></i>
-                            <span>View Order & Delivery</span>
-                            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-
-                        {{-- Payment Badges / Guarantees --}}
-                        <div class="mt-6 pt-5 border-t border-slate-800 text-center">
-                            <p class="text-[11px] text-slate-500 mb-3 font-semibold uppercase tracking-wider">Accepted Payment Methods</p>
-                            <div class="flex items-center justify-center gap-4 text-slate-500 text-xl">
-                                <i class="fa-brands fa-cc-visa hover:text-white transition"></i>
-                                <i class="fa-brands fa-cc-mastercard hover:text-white transition"></i>
-                                <i class="fa-brands fa-cc-apple-pay hover:text-white transition"></i>
-                                <i class="fa-brands fa-cc-paypal hover:text-white transition"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         @endif
+
     </div>
 </x-layout>

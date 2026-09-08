@@ -3,23 +3,23 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-        <!-- Welcome Header & Action Card -->
-        <div class="bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-slate-100 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div class="border-2 border-[#231f1d] bg-[#faf8f4] p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
-                <h1 class="text-3xl font-bold text-slate-900 tracking-tight">
-                    Welcome back, {{ Auth::user()->name ?? 'User' }}! 👋
+                <h1 class="font-masthead text-3xl sm:text-4xl font-bold text-[#161413]">
+                    Welcome back, {{ Auth::user()->name ?? 'User' }}
                 </h1>
-                <p class="text-sm text-slate-500 mt-1">
-                    Manage your store products and account details right from your dashboard.
+                <p class="font-serif-body italic text-sm text-[#5e5953] mt-1">
+                    Manage your store products and account details from your dashboard.
                 </p>
             </div>
 
-            <div>
+            <div class="flex flex-wrap gap-3">
+                <a href="{{ route('products.product') }}"
+                    class="inline-flex items-center justify-center px-5 py-3 border border-[#231f1d] text-[#161413] font-editorial-sans text-xs uppercase tracking-[0.16em] hover:bg-[#161413] hover:text-[#f7f4ee] transition">
+                    View Products
+                </a>
                 <a href="{{ route('addProduct') }}"
-                    class="inline-flex items-center justify-center px-5 py-3 bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold rounded-xl shadow-sm transition duration-150 active:scale-[0.99]">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                    </svg>
+                    class="inline-flex items-center justify-center px-5 py-3 bg-[#161413] hover:bg-black text-[#f7f4ee] font-editorial-sans text-xs uppercase tracking-[0.16em] transition">
                     Add Product
                 </a>
             </div>

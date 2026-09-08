@@ -8,17 +8,38 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    public function sellerdash(){
+    public function sellerdash()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        if (Auth::user()->role !== 'seller') {
+            return redirect()->route('buyer.dashboard');
+        }
+
         return view('seller.sellerdash');
     }
-    
+
     public function showAddProduct()
     {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        if (Auth::user()->role !== 'seller') {
+            return redirect()->route('buyer.dashboard');
+        }
+
         return view('products.addproduct');
     }
 
     public function addProduct(Request $request)
     {
+        if (!Auth::check() || Auth::user()->role !== 'seller' || !Auth::user()->seller) {
+            return redirect()->route('login');
+        }
+
         $validated = $request->validate([
             'productname' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -37,7 +58,10 @@ class ProductController extends Controller
 
     public function showProduct()
     {
-        // $products = Products::all();
+        if (!Auth::check() || Auth::user()->role !== 'seller' || !Auth::user()->seller) {
+            return redirect()->route('login');
+        }
+
         $sellerId = Auth::user()->seller->id;
 
         $products = Products::where('seller_id', $sellerId)->with('category')->latest()->get();
@@ -53,6 +77,8 @@ class ProductController extends Controller
     // }
     public function destroy(Products $product)
     {
+        abort_unless(Auth::check() && Auth::user()->seller && $product->seller_id === Auth::user()->seller->id, 403);
+
         $product->delete();
 
         return redirect()->back()->with('success', 'Product deleted successfully!');
@@ -60,12 +86,16 @@ class ProductController extends Controller
 
     public function edit(Products $product)
     {
+        abort_unless(Auth::check() && Auth::user()->seller && $product->seller_id === Auth::user()->seller->id, 403);
+
         return view('products.edit', compact('product'));
     }
 
     // Update the product in the database
     public function update(Request $request, Products $product)
     {
+        abort_unless(Auth::check() && Auth::user()->seller && $product->seller_id === Auth::user()->seller->id, 403);
+
         $validated = $request->validate([
             'productname' => 'required|string|max:255',
             'description' => 'required|string',

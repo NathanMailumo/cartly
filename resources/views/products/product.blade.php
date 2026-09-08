@@ -1,66 +1,84 @@
 <x-layout>
-    <x-slot:title>Products</x-slot:title>
+    <x-slot:title>Atelier Registry · Products</x-slot:title>
 
-    <div class="w-full max-w-4xl mx-auto space-y-6">
-        <div class="flex items-center justify-between">
-            <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">View Products</h1>
-            <a href="{{ route('addProduct') }}" class="text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition">
-                + Add Product
+    <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-6">
+
+        <div class="flex items-center justify-between pb-3 border-b border-[#231f1d] text-[10px] font-editorial-sans uppercase tracking-[0.2em] text-[#5e5953]">
+            <a href="{{ route('seller.dashboard') }}" class="hover:text-[#161413] transition flex items-center gap-1.5 font-bold">
+                <span>&larr;</span>
+                <span>Seller Dashboard</span>
+            </a>
+            <span class="font-semibold text-[#161413]">✦ Atelier Inventory Registry ✦</span>
+            <a href="{{ route('addProduct') }}" class="hover:text-[#161413] font-bold transition">
+                + Catalog New Piece
             </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Masthead -->
+        <div class="text-center py-6">
+            <h1 class="font-masthead text-5xl sm:text-7xl font-black text-[#161413] tracking-tight">
+                Cartly
+            </h1>
+            <p class="font-editorial-sans text-[9px] tracking-[0.3em] uppercase text-[#6e6860] mt-1">
+                Atelier Catalog · Curator Management
+            </p>
+        </div>
+
+        <!-- Double Rule Divider -->
+        <div class="w-full border-t-2 border-b border-[#231f1d] py-[1px] mb-8"></div>
+
+        <!-- Catalog Items Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-[#231f1d] mb-12">
             @forelse ($products ?? [] as $product)
-                <div class="bg-white rounded-xl p-6 shadow-md border border-slate-200 flex flex-col justify-between relative group">
+                <div class="border-r border-b border-[#231f1d] p-5 bg-[#faf8f4] flex flex-col justify-between group hover:bg-white transition">
                     <div>
-                        <!-- Header: Title & Action Buttons -->
-                        <div class="flex items-start justify-between gap-4 mb-2">
-                            <h2 class="text-xl font-bold text-slate-800">{{ $product->productname }}</h2>
-                            
-                            <div class="flex items-center space-x-2">
-                                <!-- Edit Button -->
-                                <a href="{{ route('products.edit', $product->id) }}" class="text-slate-400 hover:text-indigo-600 transition p-1" title="Edit Product">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                    </svg>
+                        <!-- Header with actions -->
+                        <div class="flex items-center justify-between pb-2 mb-3 border-b border-[#e5dfd5]">
+                            <span class="text-[9px] font-editorial-sans uppercase tracking-widest text-[#787167]">
+                                {{ $product->category->categoryname ?? 'Collection' }}
+                            </span>
+
+                            <div class="flex items-center gap-3 text-xs">
+                                <a href="{{ route('products.edit', $product->id) }}" class="text-[#5e5953] hover:text-[#161413] transition" title="Edit Catalog Item">
+                                    <i class="fa-regular fa-pen-to-square"></i>
                                 </a>
 
-                                <!-- Delete Form -->
-                                <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Remove piece from registry?');" class="inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-slate-400 hover:text-red-600 transition p-1" title="Delete Product">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                        </svg>
+                                    <button type="submit" class="text-[#5e5953] hover:text-[#9b2c2c] transition cursor-pointer" title="Archive / Delete">
+                                        <i class="fa-regular fa-trash-can"></i>
                                     </button>
                                 </form>
                             </div>
                         </div>
 
-                        <p class="text-slate-600 text-sm mb-2">{{ $product->description }}</p>
-                        @if($product->category)
-                            <p class="text-xs text-slate-500">Category: {{ $product->category->categoryname }}</p>
-                        @else
-                            <p class="text-xs text-slate-500">Category: Unspecified</p>
-                        @endif
+                        <!-- Title & Description -->
+                        <h2 class="font-masthead text-lg font-bold text-[#161413]">
+                            {{ $product->productname }}
+                        </h2>
+                        <p class="font-serif-body italic text-xs text-[#5e5953] line-clamp-3 mt-1">
+                            {{ $product->description }}
+                        </p>
                     </div>
 
-                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-                        <span class="text-xs uppercase font-semibold text-slate-400">Price</span>
-                        <span class="text-lg font-extrabold text-indigo-600">${{ $product->productprice }}</span>
-                        <div class="flex items-center space-x-2 mt-2">
-                            <button type="button" class="px-2 py-1 bg-slate-300 text-slate-800 rounded-l" onclick="this.nextElementSibling.stepDown();">-</button>
-                            <input type="number" min="1" value="1" class="w-12 text-center border-t border-b border-slate-300 focus:outline-none" />
-                            <button type="button" class="px-2 py-1 bg-slate-300 text-slate-800 rounded-r" onclick="this.previousElementSibling.stepUp();">+</button>
-                        </div>
+                    <div class="mt-4 pt-3 border-t border-[#e5dfd5] flex items-baseline justify-between font-serif-body">
+                        <span class="text-[10px] font-editorial-sans uppercase text-[#787167] tracking-wider">Catalog Price</span>
+                        <span class="text-base font-bold text-[#161413]">
+                            ₦{{ number_format($product->productprice) }}
+                        </span>
                     </div>
                 </div>
             @empty
-                <div class="col-span-2 bg-white rounded-xl p-8 text-center border border-slate-200">
-                    <p class="text-slate-500">No products available.</p>
+                <div class="col-span-full border-r border-b border-[#231f1d] p-12 text-center bg-[#faf8f4]">
+                    <p class="font-serif-body italic text-base text-[#787167] mb-4">No pieces cataloged in your atelier yet.</p>
+                    <a href="{{ route('addProduct') }}" 
+                       class="inline-block px-6 py-3 bg-[#1a1918] text-[#f7f4ee] font-editorial-sans text-xs uppercase tracking-[0.2em] hover:bg-black transition">
+                        Catalog First Piece &rarr;
+                    </a>
                 </div>
             @endforelse
         </div>
+
     </div>
 </x-layout>
