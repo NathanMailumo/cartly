@@ -32,7 +32,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'name' => 'required|string|max:30',
+            'email' => 'required|string|max:30',
             'password' => 'required|string|min:8',
         ]);
 
@@ -51,8 +51,8 @@ class AuthController extends Controller
             return redirect()->intended(route('dashboard'));
         };
         return back()->withErrors([
-            'name' => 'Invalid name or password entered.',
-        ])->onlyInput('name');
+            'email' => 'Invalid email or password entered.',
+        ])->onlyInput('email');
     }
     public function logout(Request $request)
     {

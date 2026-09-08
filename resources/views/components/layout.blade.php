@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cartly · {{$title ?? 'Marketplace & Archive'}}</title>
+    <title>Easybuy · {{$title ?? 'Marketplace & Archive'}}</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -82,7 +82,7 @@
                 <span class="text-center font-semibold text-[#161413] tracking-[0.15em] mx-auto sm:mx-0">
                 <i class="fa-solid fa-star text-[8px] mr-1"></i> Complimentary Shipping on All Orders <i class="fa-solid fa-star text-[8px] ml-1"></i>
             </span>
-            <span class="hidden sm:inline">U.S. Edition · {{ date('l, F j, Y') }}</span>
+            <span class="hidden sm:inline">{{ date('l, F j, Y') }}</span>
         </div>
     </header>
 
@@ -92,7 +92,7 @@
             <nav class="w-full border-b border-[#231f1d] bg-[#f7f4ee]">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
                     <a href="{{ route('dashboard') }}" class="font-masthead text-xl font-bold text-[#161413] hover:opacity-70 transition">
-                        Cartly
+                        Easybuy
                     </a>
 
                     <div class="flex items-center gap-4 sm:gap-6 text-[10px] font-editorial-sans uppercase tracking-[0.16em] text-[#5e5953]">
@@ -114,13 +114,10 @@
         @else
             <nav class="w-full border-b border-[#231f1d] bg-[#f7f4ee]">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-4">
-                    <a href="{{ url('/') }}" class="font-masthead text-2xl sm:text-3xl font-black text-[#161413] hover:opacity-70 transition">Cartly</a>
+                    <a href="{{ url('/') }}" class="font-masthead text-2xl sm:text-3xl font-black text-[#161413] hover:opacity-70 transition">Easybuy</a>
                     <div class="hidden lg:flex items-center gap-8 text-[10px] font-editorial-sans uppercase tracking-[0.18em] text-[#5e5953]">
-                        <a href="{{ url('/') }}" class="hover:text-[#161413] transition">Shop</a>
-                        <a href="{{ url('/') }}#collection" class="hover:text-[#161413] transition">Collection</a>
-                        <a href="{{ url('/') }}#archive" class="hover:text-[#161413] transition">Editorial</a>
-                        <a href="{{ url('/') }}#craftsmanship" class="hover:text-[#161413] transition">Craftsmanship</a>
-                        <a href="{{ url('/') }}#archive" class="hover:text-[#161413] transition">Journal</a>
+                        <a href="{{ url('/') }}#how-it-works" class="hover:text-[#161413] transition">How It Works</a>
+                        <a href="{{ url('/') }}#reviews" class="hover:text-[#161413] transition">Reviews</a>
                     </div>
                     <div class="flex items-center gap-4 text-[10px] font-editorial-sans uppercase tracking-[0.16em]">
                         <a href="{{ route('login') }}" class="text-[#5e5953] hover:text-[#161413] transition">Sign In</a>
@@ -136,9 +133,9 @@
     <!-- Newspaper Editorial Footer -->
     <footer class="mt-auto border-t-2 border-[#231f1d] bg-[#f7f4ee] text-[11px] font-editorial-sans uppercase text-[#5e5953] py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-            <span>All pieces are authenticated · Cartly Marketplace Archive</span>
+            <span>All pieces are authenticated · Easybuy Marketplace Archive</span>
             <span class="hidden sm:inline text-xs"><i class="fa-solid fa-star"></i></span>
-            <span>&copy; {{ date('Y') }} Cartly, Inc. · Paris · London · New York</span>
+            <span>&copy; {{ date('Y') }} Easybuy, Inc.</span>
         </div>
     </footer>
 

@@ -1,15 +1,15 @@
 <x-layout>
-    <x-slot:title>Cartly · Choose Account Type</x-slot:title>
+    <x-slot:title>Easybuy · Choose Account Type</x-slot:title>
 
     <div class="flex-1 flex items-center justify-center px-4 py-12">
         <div class="w-full max-w-lg border border-[#231f1d] bg-[#faf8f4] p-6 sm:p-9 shadow-sm">
             <div class="text-center mb-8">
-                <a href="{{ route('dashboard') }}" class="font-masthead text-5xl font-black text-[#161413] hover:opacity-70 transition">Cartly</a>
+                <a href="{{ route('dashboard') }}" class="font-masthead text-5xl font-black text-[#161413] hover:opacity-70 transition">Easybuy</a>
                 <p class="font-editorial-sans text-[9px] uppercase tracking-[0.25em] text-[#787167] mt-2">Create your account</p>
             </div>
             <div class="border-t border-[#231f1d] pt-6">
                 <h1 class="font-masthead text-3xl text-[#161413] text-center">Join as...</h1>
-                <p class="font-serif-body text-sm text-[#5e5953] text-center mt-2 mb-7">Choose how you would like to participate in Cartly.</p>
+                <p class="font-serif-body text-sm text-[#5e5953] text-center mt-2 mb-7">Choose how you would like to participate in Easybuy.</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <a href="{{ route('register', ['role' => 'buyer']) }}" class="border border-[#cfc8bc] bg-[#f4efe6] hover:bg-[#161413] hover:text-[#f7f4ee] p-5 transition group">
                         <i class="fa-solid fa-bag-shopping text-xl mb-5"></i>

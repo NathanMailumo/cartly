@@ -6,7 +6,7 @@
         <div class="text-center pb-4">
             <a href="{{ route('home') }}" class="inline-block">
                 <h1 class="font-masthead text-5xl sm:text-6xl font-black text-[#161413] tracking-tight hover:opacity-90 transition">
-                    Cartly
+                    Easybuy
                 </h1>
             </a>
             <p class="font-editorial-sans text-[10px] tracking-[0.3em] uppercase text-[#5e5953] mt-1">

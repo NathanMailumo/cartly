@@ -1,10 +1,10 @@
 <x-layout>
-    <x-slot:title>Cartly · {{ ucfirst($role) }} Registration</x-slot:title>
+    <x-slot:title>Easybuy · {{ ucfirst($role) }} Registration</x-slot:title>
 
     <div class="flex-1 flex items-center justify-center px-4 py-10">
         <div class="w-full max-w-xl border border-[#231f1d] bg-[#faf8f4] p-6 sm:p-9 shadow-sm">
             <div class="text-center mb-7">
-                <a href="{{ route('register.form') }}" class="font-masthead text-5xl font-black text-[#161413] hover:opacity-70 transition">Cartly</a>
+                <a href="{{ route('register.form') }}" class="font-masthead text-5xl font-black text-[#161413] hover:opacity-70 transition">Easybuy</a>
                 <p class="font-editorial-sans text-[9px] uppercase tracking-[0.25em] text-[#787167] mt-2">{{ ucfirst($role) }} registration</p>
             </div>
 
@@ -25,7 +25,7 @@
                     <input type="hidden" name="role" value="{{ $role }}">
                     <div>
                         <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">Full Name</label>
-                        <input type="text" name="name" value="{{ old('name') }}" required placeholder="e.g. Margot Beaumont" class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
+                        <input type="text" name="name" value="{{ old('name') }}" required placeholder="Enter your full name" class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
                     </div>
                     <div>
                         <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">Email Address</label>
@@ -44,17 +44,17 @@
                     @if ($role === 'buyer')
                         <div>
                             <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">Delivery Address</label>
-                            <input type="text" name="shipping_address" value="{{ old('shipping_address') }}" required placeholder="123 Rue Saint-Honoré, Paris, 75001" class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
+                            <input type="text" name="shipping_address" value="{{ old('shipping_address') }}" required placeholder="123 city street" class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
                         </div>
                     @endif
                     @if ($role === 'seller')
                         <div>
-                            <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">Store Name / Atelier</label>
-                            <input type="text" name="store_name" value="{{ old('store_name') }}" required placeholder="e.g. Maison de Vintage" class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
+                            <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">Store Name</label>
+                            <input type="text" name="store_name" value="{{ old('store_name') }}" required placeholder="Enter store name" class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
                         </div>
                         <div>
-                            <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">Atelier Address</label>
-                            <input type="text" name="store_address" value="{{ old('store_address') }}" required placeholder="e.g. 45 Boulevard Saint-Germain, Paris" class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
+                            <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">Store Address</label>
+                            <input type="text" name="store_address" value="{{ old('store_address') }}" required placeholder="Enter Store Address" class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
                         </div>
                     @endif
                     <button type="submit" class="w-full py-3.5 bg-[#1a1918] hover:bg-black text-[#f7f4ee] font-editorial-sans text-xs tracking-[0.2em] uppercase transition flex items-center justify-center gap-2 mt-5">

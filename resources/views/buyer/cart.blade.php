@@ -17,7 +17,7 @@
         <div class="text-center py-6">
             <a href="{{ route('buyer.dashboard') }}" class="inline-block">
                 <h1 class="font-masthead text-5xl sm:text-7xl lg:text-8xl font-black text-[#161413] tracking-tight hover:opacity-90 transition">
-                    Cartly
+                    Easybuy
                 </h1>
             </a>
             <p class="font-editorial-sans text-[9px] sm:text-[10px] tracking-[0.3em] uppercase text-[#6e6860] mt-1">
@@ -251,7 +251,7 @@
                         <div class="mt-6 pt-3 border-t border-[#e5dfd5] text-[9px] font-editorial-sans uppercase text-[#8c857b] leading-tight">
                             Issue No. 17 · September 2026<br>
                             All prices listed in Nigerian Naira (₦).<br>
-                            &copy; 2026 Cartly. Est. 2024.
+                            &copy; 2026 Easybuy. Est. 2024.
                         </div>
                     </div>
                 </div>

@@ -14,13 +14,6 @@
             <!-- ================= LEFT COLUMN: CATEGORIES & PRIVATE SALE (2 cols on lg) ================= -->
             <aside class="lg:col-span-2 border-b lg:border-b-0 lg:border-r border-[#231f1d] p-4 flex flex-col justify-between bg-[#f7f4ee]">
                 <div>
-                    <!-- Utility Icons Line (Mail, Phone, Archive) - No emojis! -->
-                    <div class="flex items-center gap-3 text-[#5e5953] pb-4 mb-4 border-b border-[#dcd7ce] text-xs">
-                        <i class="fa-regular fa-envelope"></i>
-                        <i class="fa-solid fa-phone text-[11px]"></i>
-                        <i class="fa-regular fa-user"></i>
-                    </div>
-
                     <!-- Categories List (Existing Categories Preserved!) -->
                     <nav class="space-y-1 font-editorial-sans text-[11px] uppercase tracking-wider">
                         <!-- What's New active pill -->
@@ -60,83 +53,8 @@
                 </div>
             </aside>
 
-            <!-- ================= CENTER & RIGHT COLUMNS: EDITORIAL FRONT PAGE STORIES (10 cols on lg) ================= -->
+            <!-- ================= RIGHT COLUMN: PRODUCTS ================= -->
             <section class="lg:col-span-10 p-4 sm:p-6 bg-[#faf8f4]">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
-
-                    <!-- Main Story Feature (7 cols) -->
-                    <div class="lg:col-span-7 pr-0 lg:pr-6 border-b lg:border-b-0 lg:border-r border-[#dcd7ce]">
-                        <div class="text-[10px] font-editorial-sans uppercase tracking-[0.2em] text-[#787167] mb-1.5 flex items-center gap-1.5">
-                            <span>✦</span>
-                            <span>Feature · Spring Collection</span>
-                        </div>
-
-                        <h2 class="font-masthead text-2xl sm:text-3xl lg:text-4xl text-[#161413] font-bold leading-tight mb-4">
-                            Spring 2025 Collection Unveiled in New York
-                        </h2>
-
-                        <!-- Feature Photography (Real Editorial) -->
-                        <div class="border border-[#231f1d] overflow-hidden mb-3 bg-[#e8e2d5]">
-                            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=80" 
-                                 alt="Spring 2025 haute couture showcase" 
-                                 class="w-full h-[260px] sm:h-[320px] object-cover filter grayscale contrast-110">
-                        </div>
-
-                        <p class="font-serif-body italic text-[11px] text-[#5e5953] leading-relaxed">
-                            As dawn broke over the Manhattan skyline, the fashion world's elite gathered to witness the debut of Cartly's Spring 2025 collection at the Astoria Hotel. — <span class="not-italic uppercase font-editorial-sans text-[9px]">Photo: A. Beaumont</span>
-                        </p>
-                    </div>
-
-                    <!-- Editorial Column (5 cols) -->
-                    <div class="lg:col-span-5 flex flex-col justify-between">
-                        <div>
-                            <div class="text-[10px] font-editorial-sans uppercase tracking-[0.2em] text-[#787167] mb-1.5">
-                                Style · Editorial
-                            </div>
-
-                            <h3 class="font-serif-body italic text-xl sm:text-2xl text-[#161413] font-normal leading-snug mb-3">
-                                Creative Director Simons on How to Dress for Your Ultimate Winter Getaway
-                            </h3>
-
-                            <p class="font-serif-body text-xs text-[#5e5953] leading-relaxed mb-4">
-                                Embrace the charm of winter with Simons' curated guide to dressing for your snowy escapade. As temperatures dip and the landscape transforms into a winter wonderland, your wardrobe should reflect both the necessities and the charms of the new season.
-                            </p>
-
-                            <p class="font-serif-body text-xs text-[#5e5953] leading-relaxed mb-4">
-                                Begin with the foundation: reach for an ambitious, oversized wool Bourdel coat. With a rich herringbone texture, opt for burgundy, forest green, or classic charcoal.
-                            </p>
-
-                            <!-- Editorial Pull Quote -->
-                            <div class="border-l-2 border-[#161413] pl-3 py-1 my-4 bg-[#f4efe6]">
-                                <p class="font-serif-body italic text-sm text-[#161413] leading-snug">
-                                    "Every piece should carry the weight of a story, not merely a season."
-                                </p>
-                                <span class="font-editorial-sans text-[8px] uppercase tracking-[0.2em] text-[#787167] block mt-1">
-                                    — RAF SIMONS, CREATIVE DIRECTOR
-                                </span>
-                            </div>
-                        </div>
-
-                        <!-- Secondary Real Editorial Portrait -->
-                        <div class="mt-4 pt-3 border-t border-[#dcd7ce]">
-                            <div class="border border-[#231f1d] overflow-hidden mb-2 bg-[#e8e2d5]">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" 
-                                     alt="Editorial style portrait" 
-                                     class="w-full h-36 object-cover grayscale contrast-125">
-                            </div>
-                            <span class="font-serif-body italic text-[10px] text-[#6e6860]">
-                                Knit-wear from the Winter Essentials series. Available in stores and online.
-                            </span>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-        </div>
-
-        <!-- ================= LOWER SECTION: THIS SEASON'S FINEST ACQUISITIONS ================= -->
-        <section class="py-6 bg-[#f7f4ee]">
 
             <!-- Section Banner Divider -->
             <div class="text-center my-6">
@@ -164,20 +82,20 @@
 
             <!-- Newspaper Catalog Grid (3 columns on md/lg) -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-[#231f1d]">
+                @php
+                    $catalogImages = [
+                        'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80',
+                    ];
+                @endphp
                 @forelse($products ?? [] as $product)
                     @php
-                        // Cycle through real curated catalog photography fallbacks
-                        $catalogImages = [
-                            'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80',
-                        ];
                         $imageFallback = $catalogImages[$loop->index % count($catalogImages)];
                     @endphp
-
                     <div class="border-r border-b border-[#231f1d] p-5 bg-[#faf8f4] flex flex-col justify-between group hover:bg-[#ffffff] transition">
                         <div>
                             <!-- Header Code / Season (e.g. SS - 25) -->
@@ -188,11 +106,9 @@
                                 @endif
                             </div>
 
-                            <!-- Product Photography (Real) -->
-                            <div class="border border-[#231f1d] overflow-hidden mb-3.5 bg-[#f0ebe1] h-56 flex items-center justify-center relative">
-                                <img src="{{ !empty($product->image_url) ? $product->image_url : $imageFallback }}" 
-                                     alt="{{ $product->productname }}" 
-                                     class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <!-- Seller images take priority; mixed fallback images fill the catalog until uploads are available. -->
+                            <div class="border border-[#231f1d] overflow-hidden mb-3.5 bg-white h-56 flex items-center justify-center">
+                                <img src="{{ !empty($product->image_url) ? $product->image_url : $imageFallback }}" alt="{{ $product->productname }}" class="w-full h-full object-contain group-hover:scale-105 transition duration-500">
                             </div>
 
                             <!-- Product Info -->

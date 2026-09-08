@@ -80,12 +80,12 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-0 border-t border-l border-[#231f1d]">
                     @php
                         $catalogImages = [
+                            'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80',
+                            'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80',
+                            'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
+                            'https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=80',
+                            'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80',
                             'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80',
                         ];
                     @endphp
 
@@ -105,10 +105,10 @@
                                 </div>
 
                                 <!-- Product Image -->
-                                <div class="border border-[#231f1d] overflow-hidden mb-3 bg-[#f0ebe1] h-48 flex items-center justify-center">
+                                <div class="border border-[#231f1d] overflow-hidden mb-3 bg-white h-48 flex items-center justify-center">
                                     <img src="{{ !empty($product->image_url) ? $product->image_url : $imageFallback }}" 
                                          alt="{{ $product->productname }}" 
-                                         class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                         class="w-full h-full object-contain group-hover:scale-105 transition duration-500">
                                 </div>
 
                                 <!-- Title & Description -->

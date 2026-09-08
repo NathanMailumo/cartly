@@ -28,7 +28,7 @@ class SendOtpMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Cartly - Verification Code',
+            subject: 'Easybuy - Verification Code',
         );
     }
 

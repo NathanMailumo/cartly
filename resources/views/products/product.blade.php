@@ -17,7 +17,7 @@
         <!-- Masthead -->
         <div class="text-center py-6">
             <h1 class="font-masthead text-5xl sm:text-7xl font-black text-[#161413] tracking-tight">
-                Cartly
+                Easybuy
             </h1>
             <p class="font-editorial-sans text-[9px] tracking-[0.3em] uppercase text-[#6e6860] mt-1">
                 Atelier Catalog · Curator Management

@@ -1,10 +1,10 @@
 <x-layout>
-    <x-slot:title>Cartly · Sign In</x-slot:title>
+    <x-slot:title>Easybuy · Sign In</x-slot:title>
 
     <div class="flex-1 flex items-center justify-center px-4 py-12">
         <div class="w-full max-w-md border border-[#231f1d] bg-[#faf8f4] p-6 sm:p-9 shadow-sm">
             <div class="text-center mb-7">
-                <a href="{{ route('dashboard') }}" class="font-masthead text-5xl font-black text-[#161413] hover:opacity-70 transition">Cartly</a>
+                <a href="{{ route('dashboard') }}" class="font-masthead text-5xl font-black text-[#161413] hover:opacity-70 transition">Easybuy</a>
                 <p class="font-editorial-sans text-[9px] uppercase tracking-[0.25em] text-[#787167] mt-2">Sign in to your archive</p>
             </div>
 
@@ -18,8 +18,8 @@
             <form method="POST" action="{{ route('auth.login') }}" class="space-y-5">
                 @csrf
                 <div>
-                    <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">Name</label>
-                    <input type="text" name="name" value="{{ old('name') }}" required autofocus placeholder="e.g member" class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
+                    <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">Email</label>
+                    <input type="text" name="email" value="{{ old('email') }}" required autofocus placeholder="e.g easybuy@member.com" class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
                 </div>
                 <div>
                     <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">Password</label>
@@ -32,7 +32,7 @@
             </form>
 
             <div class="border-t border-[#dcd7ce] mt-7 pt-5 text-center text-xs font-serif-body text-[#6e6860]">
-                New to Cartly? <a href="{{ route('register.form') }}" class="text-[#161413] font-semibold underline">Register</a>
+                New to Easybuy? <a href="{{ route('register.form') }}" class="text-[#161413] font-semibold underline">Register</a>
             </div>
         </div>
     </div>

@@ -6,7 +6,7 @@
         <div class="text-center pb-4">
             <a href="{{ route('home') }}" class="inline-block">
                 <h1 class="font-masthead text-5xl sm:text-6xl font-black text-[#161413] tracking-tight hover:opacity-90 transition">
-                    Cartly
+                    Easybuy
                 </h1>
             </a>
             <p class="font-editorial-sans text-[10px] tracking-[0.3em] uppercase text-[#5e5953] mt-1">
@@ -46,7 +46,7 @@
                            value="{{ old('email') }}" 
                            required 
                            autofocus
-                           placeholder="member@cartly.com" 
+                           placeholder="member@Easybuy.com" 
                            class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
                 </div>
 

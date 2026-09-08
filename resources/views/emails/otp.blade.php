@@ -16,7 +16,7 @@
                     <!-- Header -->
                     <tr>
                         <td style="padding: 32px 32px 16px 32px; text-align: center;">
-                            <h1 style="margin: 0; font-size: 24px; font-weight: 700; color: #38bdf8; letter-spacing: -0.5px;">Cartly</h1>
+                            <h1 style="margin: 0; font-size: 24px; font-weight: 700; color: #38bdf8; letter-spacing: -0.5px;">Easybuy</h1>
                         </td>
                     </tr>
 

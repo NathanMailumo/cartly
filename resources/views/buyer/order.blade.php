@@ -17,7 +17,7 @@
         <div class="text-center py-6">
             <a href="{{ route('buyer.dashboard') }}" class="inline-block">
                 <h1 class="font-masthead text-5xl sm:text-6xl font-black text-[#161413] tracking-tight hover:opacity-90 transition">
-                    Cartly
+                    Easybuy
                 </h1>
             </a>
             <p class="font-editorial-sans text-[9px] tracking-[0.3em] uppercase text-[#6e6860] mt-1">
@@ -117,7 +117,7 @@
 
             <!-- Authentic Seal Notice -->
             <div class="mt-8 pt-6 border-t border-[#dcd7ce] text-center font-serif-body italic text-xs text-[#5e5953]">
-                "Every acquisition through Cartly is individually examined and certified by our curators before dispatch."
+                "Every acquisition through Easybuy is individually examined and certified by our curators before dispatch."
             </div>
 
             <div class="mt-8 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
