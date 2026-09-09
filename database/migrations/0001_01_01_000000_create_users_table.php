@@ -42,8 +42,8 @@ return new class extends Migration
 
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('admin_level')->default('super');
+            $table->string('email');
+            $table->string('password');
             $table->timestamps();
         });
 

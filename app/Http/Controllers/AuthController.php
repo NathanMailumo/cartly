@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User as AuthModel;
 use App\Models\passwordReset;
 use Illuminate\Support\Facades\Mail;
-
+use App\Models\Admin;
 
 class AuthController extends Controller
 {
@@ -36,9 +36,14 @@ class AuthController extends Controller
             'password' => 'required|string|min:8',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
-            // return redirect()->intended(route('dashboard'));
+            // $user = Auth::user();
+            return redirect()->intended(route('admin.index'));
+        }
+        
+        if (Auth::guard('web')->attempt($credentials)) {
+            $request->session()->regenerate();
             $user = Auth::user();
 
             if ($user->role === 'seller') {
@@ -48,6 +53,7 @@ class AuthController extends Controller
             if ($user->role === 'buyer') {
                 return redirect()->intended(route('buyer.dashboard'));
             }
+
             return redirect()->intended(route('dashboard'));
         };
         return back()->withErrors([

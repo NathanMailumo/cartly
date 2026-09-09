@@ -34,24 +34,35 @@
                     <div>
                         <!-- Header with actions -->
                         <div class="flex items-center justify-between pb-2 mb-3 border-b border-[#e5dfd5]">
-                            <span class="text-[9px] font-editorial-sans uppercase tracking-widest text-[#787167]">
-                                {{ $product->category->categoryname ?? 'Collection' }}
-                            </span>
+    <span class="text-[9px] font-editorial-sans uppercase tracking-widest text-[#787167]">
+        {{ $product->category->categoryname ?? 'Collection' }}
+    </span>
 
-                            <div class="flex items-center gap-3 text-xs">
-                                <a href="{{ route('products.edit', $product->id) }}" class="text-[#5e5953] hover:text-[#161413] transition" title="Edit Catalog Item">
-                                    <i class="fa-regular fa-pen-to-square"></i>
-                                </a>
+    <!-- Status Badges for Seller -->
+    @if(($product->status ?? 'waiting') === 'approved')
+        <span class="px-2 py-0.5 border border-[#2c7a7b] bg-[#e6fffa] text-[#2c7a7b] font-editorial-sans text-[9px] uppercase tracking-wider">
+            ✦ Approved
+        </span>
+    @else
+        <span class="px-2 py-0.5 border border-[#d69e2e] bg-[#fefcbf] text-[#744210] font-editorial-sans text-[9px] uppercase tracking-wider">
+            Waiting Admin Approval
+        </span>
+    @endif
 
-                                <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Remove piece from registry?');" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-[#5e5953] hover:text-[#9b2c2c] transition cursor-pointer" title="Archive / Delete">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+    <div class="flex items-center gap-3 text-xs">
+        <a href="{{ route('products.edit', $product->id) }}" class="text-[#5e5953] hover:text-[#161413] transition" title="Edit Catalog Item">
+            <i class="fa-regular fa-pen-to-square"></i>
+        </a>
+
+        <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Remove piece from registry?');" class="inline">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="text-[#5e5953] hover:text-[#9b2c2c] transition cursor-pointer" title="Archive / Delete">
+                <i class="fa-regular fa-trash-can"></i>
+            </button>
+        </form>
+    </div>
+</div>
 
                         <!-- Title & Description -->
                         <h2 class="font-masthead text-lg font-bold text-[#161413]">

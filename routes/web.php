@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BuyerController;
 use App\Http\Controllers\PaymentController;
+use App\Models\admin;
 // use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -81,3 +83,10 @@ Route::get('/buyer/checkout', [BuyerController::class, 'showCheckout'])->name('b
 Route::post('/payment/initialize', [PaymentController::class, 'initialize_payment'])->name('payment.initialize');
 Route::get('/payment/callback', [PaymentController::class, 'callback'])->name('payment.callback'); 
 
+// admin route
+Route::get('/admin', [AdminController::class, 'showAdmin'])->name('admin.index');
+Route::get('/admin/product', [AdminController::class, 'showAdminProduct'])->name('admin.admin_product');
+
+// admin approval or rejection
+Route::patch('/admin/products/{product}/approve', [AdminController::class, 'approveProduct'])->name('admin.products.approve');
+Route::patch('/admin/products/{product}/reject', [AdminController::class, 'rejectProduct'])->name('admin.products.reject');

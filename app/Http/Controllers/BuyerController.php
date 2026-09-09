@@ -13,12 +13,12 @@ class BuyerController extends Controller
 {
     public function buyerdash()
     {
-        $products = Products::latest()->get();
+        $products = Products::where('status', 'approved')->latest()->get();
         return view('buyer.buyerdash', compact('products'));
     }
 
     public function viewproducts(){
-        $products = Products::all();
+        $products = Products::where('status', 'approved')->latest()->get();
         return view('buyer.products', compact('products'));
     }
 
@@ -31,7 +31,7 @@ class BuyerController extends Controller
         if ($request->filled('category')) {
             $selectedCategory = Category::find($request->category);
             if ($selectedCategory) {
-                $products = Products::where('category_id', $selectedCategory->id)->latest()->get();
+                $products = Products::where('category_id', $selectedCategory->id)->where('status', 'approved')->latest()->get();
             }
         }
 
