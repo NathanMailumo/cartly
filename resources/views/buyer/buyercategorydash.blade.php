@@ -1,162 +1,172 @@
 <x-layout>
-    <x-slot:title>Browse Categories · The Archive</x-slot:title>
+    <x-slot:title>easybuy · {{ $selectedCategory ? $selectedCategory->categoryname : 'All Products' }}</x-slot:title>
 
-    <div class="w-full max-w-[1360px] mx-auto px-3 sm:px-6 py-2">
+    @php
+        // If no category is selected, display all approved products; otherwise display category products
+        $displayProducts = $selectedCategory 
+            ? $products 
+            : \App\Models\Products::where('status', 'approved')->latest()->get();
 
-        <!-- Main Category Page Grid Layout -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 border border-[#231f1d] bg-[#faf8f4] mb-12">
+        if (request()->filled('search')) {
+            $query = strtolower(request('search'));
+            $displayProducts = $displayProducts->filter(function($p) use ($query) {
+                return str_contains(strtolower($p->productname), $query) || str_contains(strtolower($p->description), $query);
+            });
+        }
 
-            <!-- ================= LEFT COLUMN: CATEGORIES (3 cols on lg) ================= -->
-            <aside class="lg:col-span-3 border-b lg:border-b-0 lg:border-r border-[#231f1d] p-5 bg-[#f7f4ee] flex flex-col justify-between">
-                <div>
-                    <!-- Header -->
-                    <div class="pb-3 mb-4 border-b border-[#231f1d] flex items-center justify-between text-xs font-editorial-sans uppercase tracking-widest text-[#161413] font-bold">
-                        <span>Department Index</span>
-                        <i class="fa-solid fa-layer-group text-[11px] text-[#787167]"></i>
-                    </div>
+        // High quality ecommerce product images
+        $catalogImages = [
+            'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80', // Air Boost Red/White Sneaker
+            'https://images.unsplash.com/photo-1607522370275-f14206abe5d3?auto=format&fit=crop&w=800&q=80', // Classic White Hi-Top
+            'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80', // Linen V-Neck Top
+            'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=800&q=80', // Oversized Flannel Shirt
+            'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=800&q=80', // Retro Round Sunglasses
+            'https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=80', // Minimalist Watch
+            'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80', // Gold Jewelry Set
+            'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80', // Luxury Fragrance / Cologne
+            'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80', // Leather Bag
+        ];
 
-                    <!-- All Categories Link -->
-                    <nav class="space-y-1 font-editorial-sans text-[11px] uppercase tracking-wider">
-                        <a href="{{ route('buyer.browse') }}"
-                           class="flex items-center justify-between px-3 py-2 border border-transparent transition {{ !$selectedCategory ? 'bg-[#161413] text-[#f7f4ee] font-bold' : 'text-[#3d3833] hover:bg-[#eae4d7]' }}">
-                            <span>All Acquisitions</span>
-                            <span class="text-[10px] opacity-80">{{ $categories->sum('products_count') }}</span>
-                        </a>
+        $badges = ['New', 'Popular', 'Sale'];
+    @endphp
 
-                        <!-- Preserved Database Categories -->
-                        @foreach($categories as $cat)
-                            <a href="{{ route('buyer.browse', ['category' => $cat->id]) }}"
-                               class="flex items-center justify-between px-3 py-2 border border-transparent transition {{ $selectedCategory && $selectedCategory->id === $cat->id ? 'bg-[#161413] text-[#f7f4ee] font-bold' : 'text-[#3d3833] hover:bg-[#eae4d7]' }}">
-                                <span>{{ $cat->categoryname }}</span>
-                                <span class="text-[10px] opacity-80">{{ $cat->products_count }}</span>
-                            </a>
-                        @endforeach
-                    </nav>
+    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+
+        <!-- Top Header Notification -->
+        @if(session('success'))
+            <div class="mb-8 p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-md flex items-center justify-between shadow-sm animate-fade-in">
+                <div class="flex items-center gap-2 text-sm font-medium">
+                    <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                    <span>{{ session('success') }}</span>
                 </div>
+                <a href="{{ route('buyer.cart') }}" class="text-xs font-bold uppercase tracking-wider text-emerald-900 hover:underline flex items-center gap-1">
+                    <span>View Bag</span> &rarr;
+                </a>
+            </div>
+        @endif
 
-                <!-- Boxed Fine Print -->
-                <div class="mt-8 pt-4 border-t border-[#dcd7ce] text-[9px] font-editorial-sans uppercase text-[#787167] leading-tight">
-                    Issue No. 17 · Archive Registry<br>
-                    All categories certified authentic.
-                </div>
-            </aside>
+        <!-- Header Section -->
+        <div class="mb-8 sm:mb-10">
+            <p class="text-xs font-semibold tracking-widest uppercase text-gray-500 mb-2">
+                SHOWING {{ $displayProducts->count() }} {{ Str::plural('ITEM', $displayProducts->count()) }}
+            </p>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#111111] font-normal tracking-tight">
+                {{ $selectedCategory ? $selectedCategory->categoryname : 'All Products' }}
+            </h1>
+        </div>
 
-            <!-- ================= RIGHT COLUMN: PRODUCTS & SEARCH (9 cols on lg) ================= -->
-            <section class="lg:col-span-9 p-6 sm:p-8 bg-[#faf8f4]">
+        <!-- Filter Pills Bar -->
+        <div class="flex items-center justify-between gap-4 pb-6 mb-8 overflow-x-auto border-b border-gray-200 scrollbar-none">
+            <div class="flex items-center gap-2.5 flex-nowrap">
+                <!-- All Filter Pill -->
+                <a href="{{ route('buyer.browse') }}" 
+                   class="px-5 py-2 text-sm font-medium rounded-full transition whitespace-nowrap {{ !$selectedCategory ? 'bg-[#111111] text-white' : 'bg-white text-gray-700 border border-gray-200 hover:border-black' }}">
+                    All
+                </a>
 
-                <!-- Header & Search -->
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-[#231f1d] gap-4 mb-8">
-                    <div>
-                        <div class="text-[10px] font-editorial-sans uppercase tracking-[0.2em] text-[#787167] mb-1">
-                            ✦ Authenticated Archive
-                        </div>
-                        <h2 class="font-masthead text-2xl sm:text-3xl text-[#161413] font-bold">
-                            {{ $selectedCategory ? $selectedCategory->categoryname : 'All Cataloged Pieces' }}
-                        </h2>
-                        <p class="font-serif-body italic text-xs text-[#5e5953] mt-0.5">
-                            Showing {{ $products->count() }} authenticated piece{{ $products->count() !== 1 ? 's' : '' }}
-                        </p>
-                    </div>
+                <!-- Database Categories Pills -->
+                @foreach($categories as $cat)
+                    <a href="{{ route('buyer.browse', ['category' => $cat->id]) }}" 
+                       class="px-5 py-2 text-sm font-medium rounded-full transition whitespace-nowrap {{ $selectedCategory && $selectedCategory->id === $cat->id ? 'bg-[#111111] text-white' : 'bg-white text-gray-700 border border-gray-200 hover:border-black' }}">
+                        {{ $cat->categoryname }}
+                    </a>
+                @endforeach
+            </div>
 
-                    <!-- Search Form -->
-                    <form action="{{ route('buyer.browse') }}" method="GET" class="flex items-center">
-                        @if($selectedCategory)
-                            <input type="hidden" name="category" value="{{ $selectedCategory->id }}">
-                        @endif
-                        <div class="relative w-full sm:w-64">
-                            <input type="text" 
-                                   name="search" 
-                                   value="{{ request('search') }}"
-                                   placeholder="Search archive..." 
-                                   class="w-full bg-[#f4efe6] border border-[#231f1d] px-3 py-2 text-xs font-serif-body text-[#161413] placeholder-[#8c857b] focus:outline-none">
-                            <button type="submit" class="absolute right-0 top-0 bottom-0 px-3 text-[#161413] hover:opacity-60 transition">
-                                <i class="fa-solid fa-magnifying-glass text-xs"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+            <!-- Search Form -->
+            <form action="{{ route('buyer.browse') }}" method="GET" class="hidden sm:flex items-center relative">
+                @if($selectedCategory)
+                    <input type="hidden" name="category" value="{{ $selectedCategory->id }}">
+                @endif
+                <input type="text" 
+                       name="search" 
+                       value="{{ request('search') }}"
+                       placeholder="Search products..." 
+                       class="w-48 lg:w-60 bg-white border border-gray-200 rounded-full pl-9 pr-4 py-1.5 text-xs text-gray-800 placeholder-gray-400 focus:outline-none focus:border-black transition">
+                <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs absolute left-3 pointer-events-none"></i>
+            </form>
+        </div>
 
-                <!-- Product Catalog Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-0 border-t border-l border-[#231f1d]">
+        <!-- 3-Column Products Grid (Matching Image 1) -->
+        @if($displayProducts->isNotEmpty())
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach($displayProducts as $product)
                     @php
-                        $catalogImages = [
-                            'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80',
-                            'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=80',
-                        ];
+                        $imageFallback = $catalogImages[$loop->index % count($catalogImages)];
+                        $badgeText = $badges[$loop->index % count($badges)];
                     @endphp
 
-                    @forelse($products as $product)
-                        @php
-                            $imageFallback = $catalogImages[$loop->index % count($catalogImages)];
-                        @endphp
+                    <div class="bg-white border border-gray-100 flex flex-col justify-between group hover:shadow-lg transition-all duration-300">
+                        
+                        <div>
+                            <!-- Product Image Area -->
+                            <div class="relative bg-[#f4f4f4] aspect-square overflow-hidden flex items-center justify-center p-6">
+                                <!-- Badge (New / Popular / Sale) in Top-Left -->
+                                <span class="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-sm border border-gray-200/60 text-gray-700 text-[11px] font-medium px-3 py-1 rounded-sm shadow-sm">
+                                    {{ $badgeText }}
+                                </span>
 
-                        <div class="border-r border-b border-[#231f1d] p-5 bg-[#faf8f4] flex flex-col justify-between group hover:bg-[#ffffff] transition">
-                            <div>
-                                <!-- Season Tag -->
-                                <div class="flex items-center justify-between text-[10px] font-editorial-sans uppercase text-[#787167] mb-2 tracking-widest">
-                                    <span>{{ $loop->iteration % 2 === 0 ? 'AW - 24' : 'SS - 25' }}</span>
-                                    @if($product->category)
-                                        <span class="text-[9px] text-[#8c857b]">{{ $product->category->categoryname }}</span>
-                                    @endif
-                                </div>
-
-                                <!-- Product Image -->
-                                <div class="border border-[#231f1d] overflow-hidden mb-3 bg-white h-48 flex items-center justify-center">
-                                    <img src="{{ !empty($product->image_url) ? $product->image_url : $imageFallback }}" 
-                                         alt="{{ $product->productname }}" 
-                                         class="w-full h-full object-contain group-hover:scale-105 transition duration-500">
-                                </div>
-
-                                <!-- Title & Description -->
-                                <h3 class="font-masthead text-base font-bold text-[#161413] tracking-tight">
-                                    {{ $product->productname }}
-                                </h3>
-                                <p class="font-serif-body italic text-xs text-[#5e5953] line-clamp-2 mt-0.5">
-                                    {{ $product->description }}
-                                </p>
+                                <img src="{{ !empty($product->image_url) ? $product->image_url : $imageFallback }}" 
+                                     alt="{{ $product->productname }}" 
+                                     class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
                             </div>
 
-                            <!-- Price & Add To Bag -->
-                            <div class="mt-4 pt-3 border-t border-[#e5dfd5]">
-                                <div class="flex items-baseline justify-between mb-3 font-serif-body">
-                                    <span class="text-xs text-[#787167]">{{ $product->productname }}</span>
-                                    <span class="text-base font-bold text-[#161413]">
-                                        ₦{{ number_format($product->productprice) }}
+                            <!-- Product Info -->
+                            <div class="p-5 pb-2">
+                                <!-- Row 1: Title & Price -->
+                                <div class="flex items-start justify-between gap-2">
+                                    <h3 class="text-base font-bold text-gray-900 tracking-tight line-clamp-1">
+                                        {{ $product->productname }}
+                                    </h3>
+                                    <span class="text-base font-bold text-gray-900 whitespace-nowrap">
+                                        &#8358;{{ number_format($product->productprice) }}
                                     </span>
                                 </div>
 
-                                <form action="{{ route('buyer.addToCart') }}" method="POST" class="w-full">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                    <input type="hidden" name="quantity" value="1">
-                                    <button type="submit" 
-                                            class="w-full py-2 border border-[#161413] hover:bg-[#161413] hover:text-[#f7f4ee] text-[#161413] font-editorial-sans text-[10px] uppercase tracking-[0.2em] transition flex items-center justify-center gap-1.5 cursor-pointer">
-                                        <span>Add to Bag</span>
-                                        <span>&rarr;</span>
-                                    </button>
-                                </form>
-
-                                @if(session('added_product_id') == $product->id)
-                                    <div class="mt-1.5 text-center text-[10px] font-serif-body italic text-[#2c7a7b]">
-                                        ✦ Added to your collection.
-                                    </div>
-                                @endif
+                                <!-- Row 2: Subtitle / Description (Italic) -->
+                                <p class="text-xs text-gray-500 italic mt-1 line-clamp-1">
+                                    {{ $product->description }}
+                                </p>
                             </div>
                         </div>
-                    @empty
-                        <div class="col-span-full border-r border-b border-[#231f1d] p-12 text-center bg-[#faf8f4]">
-                            <p class="font-serif-body italic text-base text-[#787167]">No acquisitions found in this category.</p>
+
+                        <!-- Row 3: Ratings & Add to Bag Button -->
+                        <div class="p-5 pt-3 flex items-center justify-between border-t border-gray-100">
+                            <!-- Star Ratings (5 stars) -->
+                            <div class="flex items-center gap-0.5 text-amber-400 text-xs">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+
+                            <!-- Add to Bag Form -->
+                            <form action="{{ route('buyer.addToCart') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" 
+                                        class="bg-[#f5ce42] hover:bg-[#e6c035] text-black font-semibold text-xs px-4 py-2 rounded-sm shadow-sm transition flex items-center gap-1.5 cursor-pointer">
+                                    <span>+ Add to Bag</span>
+                                </button>
+                            </form>
                         </div>
-                    @endforelse
-                </div>
 
-            </section>
-
-        </div>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <!-- Empty State -->
+            <div class="bg-white border border-gray-200 p-16 text-center my-8 rounded-none">
+                <i class="fa-solid fa-bag-shopping text-4xl text-gray-300 mb-4"></i>
+                <h3 class="text-2xl font-serif text-gray-900 mb-2">No products found</h3>
+                <p class="text-sm text-gray-500 mb-6">We couldn't find any items in this category right now.</p>
+                <a href="{{ route('buyer.browse') }}" class="inline-block px-6 py-2.5 bg-black text-white text-xs font-semibold uppercase tracking-wider rounded">
+                    View All Products
+                </a>
+            </div>
+        @endif
 
     </div>
 </x-layout>

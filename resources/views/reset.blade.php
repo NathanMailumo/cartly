@@ -1,68 +1,57 @@
 <x-layout>
-    <x-slot:title>Reset Member Access</x-slot:title>
+    <x-slot:title>easybuy · Reset Password</x-slot:title>
 
-    <div class="w-full max-w-xl mx-auto px-4 py-8 flex-1 flex flex-col justify-center">
-
-        <div class="text-center pb-4">
-            <a href="{{ route('home') }}" class="inline-block">
-                <h1 class="font-masthead text-5xl sm:text-6xl font-black text-[#161413] tracking-tight hover:opacity-90 transition">
-                    Easybuy
-                </h1>
-            </a>
-            <p class="font-editorial-sans text-[10px] tracking-[0.3em] uppercase text-[#5e5953] mt-1">
-                Member Access Recovery
-            </p>
-        </div>
-
-        <div class="w-full border-t-2 border-b border-[#231f1d] py-[1px] mb-8"></div>
-
-        <div class="border-2 border-[#231f1d] bg-[#faf8f4] p-8 sm:p-10 shadow-sm">
-            <div class="text-center mb-6">
-                <div class="text-[10px] font-editorial-sans uppercase tracking-[0.2em] text-[#787167] mb-1">
-                    ✦ Member Identification
-                </div>
-                <h2 class="font-masthead text-2xl sm:text-3xl text-[#161413] font-bold">
-                    Recover Archive Passcode
-                </h2>
-                <p class="font-serif-body italic text-xs text-[#5e5953] mt-1">
-                    Enter your registered email address to receive your access dispatch code.
+    <div class="flex-1 flex items-center justify-center px-4 py-16">
+        <div class="w-full max-w-md bg-white border border-gray-200 p-8 sm:p-10 shadow-sm rounded-sm">
+            
+            <div class="text-center mb-8">
+                <a href="{{ route('dashboard') }}" class="inline-block hover:opacity-85 transition" title="easybuy">
+                    <img src="{{ asset('images/easybuy-logo.png') }}" alt="easybuy" class="h-10 sm:h-11 w-auto object-contain mx-auto">
+                </a>
+                <p class="text-xs font-semibold uppercase tracking-widest text-gray-500 mt-3">
+                    Password Recovery
                 </p>
             </div>
 
-            @if($errors->any())
-                <div class="mb-4 p-3 border border-[#231f1d] bg-[#f0ebe1] text-[#9b2c2c] text-xs font-serif-body">
-                    {{ $errors->first() }}
-                </div>
-            @endif
+            <div class="border-t border-gray-200 pt-6">
+                <h1 class="text-2xl font-serif font-bold text-gray-950 text-center mb-2">
+                    Reset Your Password
+                </h1>
+                <p class="text-xs text-gray-500 text-center mb-6">
+                    Enter your registered email address and we'll send you a verification code.
+                </p>
 
-            <form method="POST" action="{{ route('auth.reset') }}" class="space-y-4">
-                @csrf
-                <div>
-                    <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">
-                        Registered Email
-                    </label>
-                    <input type="email" 
-                           name="email" 
-                           value="{{ old('email') }}" 
-                           required 
-                           autofocus
-                           placeholder="member@Easybuy.com" 
-                           class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
-                </div>
+                @if($errors->any())
+                    <div class="mb-5 p-3.5 bg-red-50 border border-red-200 text-red-700 text-xs rounded-sm">
+                        {{ $errors->first() }}
+                    </div>
+                @endif
 
-                <button type="submit" 
-                        class="w-full py-3.5 bg-[#1a1918] hover:bg-black text-[#f7f4ee] font-editorial-sans text-xs tracking-[0.2em] uppercase transition flex items-center justify-center gap-2 cursor-pointer mt-2">
-                    <span>Dispatch Recovery Code</span>
-                    <span>&rarr;</span>
-                </button>
+                <form method="POST" action="{{ route('auth.reset') }}" class="space-y-4">
+                    @csrf
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">Email Address</label>
+                        <input type="email" 
+                               name="email" 
+                               value="{{ old('email') }}" 
+                               required 
+                               autofocus
+                               placeholder="you@example.com" 
+                               class="w-full bg-[#faf9f6] border border-gray-300 rounded-sm px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-black transition">
+                    </div>
 
-                <div class="pt-4 text-center">
-                    <a href="{{ route('login') }}" class="text-[11px] font-serif-body italic text-[#6e6860] hover:text-[#161413] underline transition">
-                        &larr; Return to Sign In
-                    </a>
+                    <button type="submit" 
+                            class="w-full py-3 bg-[#f5ce42] hover:bg-[#e6c035] text-black font-semibold text-xs uppercase tracking-widest rounded-sm transition shadow-sm flex items-center justify-center gap-2 cursor-pointer mt-2">
+                        <span>Send Recovery Code</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </form>
+
+                <div class="border-t border-gray-200 mt-6 pt-4 text-center text-xs text-gray-600">
+                    Remember your password? <a href="{{ route('login') }}" class="text-black font-bold hover:underline">Sign in</a>
                 </div>
-            </form>
+            </div>
+
         </div>
-
     </div>
 </x-layout>

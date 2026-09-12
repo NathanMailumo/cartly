@@ -1,95 +1,95 @@
 <x-layout>
-    <x-slot:title>Atelier Registry · Products</x-slot:title>
+    <x-slot:title>easybuy · Manage Products</x-slot:title>
 
-    <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-6">
+    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
 
-        <div class="flex items-center justify-between pb-3 border-b border-[#231f1d] text-[10px] font-editorial-sans uppercase tracking-[0.2em] text-[#5e5953]">
-            <a href="{{ route('seller.dashboard') }}" class="hover:text-[#161413] transition flex items-center gap-1.5 font-bold">
-                <span>&larr;</span>
-                <span>Seller Dashboard</span>
+        <!-- Top Header Navigation -->
+        <div class="flex items-center justify-between pb-6 mb-8 border-b border-gray-200">
+            <div>
+                <a href="{{ route('seller.dashboard') }}" class="text-xs font-semibold text-gray-500 hover:text-black transition flex items-center gap-1 mb-1">
+                    <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                    <span>Seller Dashboard</span>
+                </a>
+                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-gray-950">Store Inventory</h1>
+            </div>
+            <a href="{{ route('addProduct') }}" class="px-4 py-2.5 bg-[#f5ce42] hover:bg-[#e6c035] text-black font-semibold text-xs rounded transition shadow-sm flex items-center gap-1.5">
+                <i class="fa-solid fa-plus text-xs"></i>
+                <span>Add Product</span>
             </a>
-            <span class="font-semibold text-[#161413]">✦ Atelier Inventory Registry ✦</span>
-            <a href="{{ route('addProduct') }}" class="hover:text-[#161413] font-bold transition">
-                + Catalog New Piece
-            </a>
         </div>
 
-        <!-- Masthead -->
-        <div class="text-center py-6">
-            <h1 class="font-masthead text-5xl sm:text-7xl font-black text-[#161413] tracking-tight">
-                Easybuy
-            </h1>
-            <p class="font-editorial-sans text-[9px] tracking-[0.3em] uppercase text-[#6e6860] mt-1">
-                Atelier Catalog · Curator Management
-            </p>
-        </div>
+        @if(session('success'))
+            <div class="mb-8 p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs rounded-sm flex items-center gap-2">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>{{ session('success') }}</span>
+            </div>
+        @endif
 
-        <!-- Double Rule Divider -->
-        <div class="w-full border-t-2 border-b border-[#231f1d] py-[1px] mb-8"></div>
-
-        <!-- Catalog Items Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-[#231f1d] mb-12">
-            @forelse ($products ?? [] as $product)
-                <div class="border-r border-b border-[#231f1d] p-5 bg-[#faf8f4] flex flex-col justify-between group hover:bg-white transition">
-                    <div>
-                        <!-- Header with actions -->
-                        <div class="flex items-center justify-between pb-2 mb-3 border-b border-[#e5dfd5]">
-    <span class="text-[9px] font-editorial-sans uppercase tracking-widest text-[#787167]">
-        {{ $product->category->categoryname ?? 'Collection' }}
-    </span>
-
-    <!-- Status Badges for Seller -->
-    @if(($product->status ?? 'waiting') === 'approved')
-        <span class="px-2 py-0.5 border border-[#2c7a7b] bg-[#e6fffa] text-[#2c7a7b] font-editorial-sans text-[9px] uppercase tracking-wider">
-            ✦ Approved
-        </span>
-    @else
-        <span class="px-2 py-0.5 border border-[#d69e2e] bg-[#fefcbf] text-[#744210] font-editorial-sans text-[9px] uppercase tracking-wider">
-            Waiting Admin Approval
-        </span>
-    @endif
-
-    <div class="flex items-center gap-3 text-xs">
-        <a href="{{ route('products.edit', $product->id) }}" class="text-[#5e5953] hover:text-[#161413] transition" title="Edit Catalog Item">
-            <i class="fa-regular fa-pen-to-square"></i>
-        </a>
-
-        <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Remove piece from registry?');" class="inline">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="text-[#5e5953] hover:text-[#9b2c2c] transition cursor-pointer" title="Archive / Delete">
-                <i class="fa-regular fa-trash-can"></i>
-            </button>
-        </form>
-    </div>
-</div>
-
-                        <!-- Title & Description -->
-                        <h2 class="font-masthead text-lg font-bold text-[#161413]">
-                            {{ $product->productname }}
-                        </h2>
-                        <p class="font-serif-body italic text-xs text-[#5e5953] line-clamp-3 mt-1">
-                            {{ $product->description }}
-                        </p>
-                    </div>
-
-                    <div class="mt-4 pt-3 border-t border-[#e5dfd5] flex items-baseline justify-between font-serif-body">
-                        <span class="text-[10px] font-editorial-sans uppercase text-[#787167] tracking-wider">Catalog Price</span>
-                        <span class="text-base font-bold text-[#161413]">
-                            ₦{{ number_format($product->productprice) }}
-                        </span>
-                    </div>
-                </div>
-            @empty
-                <div class="col-span-full border-r border-b border-[#231f1d] p-12 text-center bg-[#faf8f4]">
-                    <p class="font-serif-body italic text-base text-[#787167] mb-4">No pieces cataloged in your atelier yet.</p>
-                    <a href="{{ route('addProduct') }}" 
-                       class="inline-block px-6 py-3 bg-[#1a1918] text-[#f7f4ee] font-editorial-sans text-xs uppercase tracking-[0.2em] hover:bg-black transition">
-                        Catalog First Piece &rarr;
-                    </a>
-                </div>
-            @endforelse
-        </div>
+        @if($products->isNotEmpty())
+            <div class="bg-white border border-gray-200 rounded-sm shadow-sm overflow-hidden">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="border-b border-gray-200 bg-gray-50 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                            <th class="py-3.5 px-5">Product</th>
+                            <th class="py-3.5 px-5">Category</th>
+                            <th class="py-3.5 px-5 text-right">Price</th>
+                            <th class="py-3.5 px-5 text-center">Status</th>
+                            <th class="py-3.5 px-5 text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        @foreach($products as $product)
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="py-4 px-5">
+                                    <p class="font-bold text-gray-900">{{ $product->productname }}</p>
+                                    <p class="text-xs text-gray-500 italic mt-0.5 line-clamp-1 max-w-sm">{{ $product->description }}</p>
+                                </td>
+                                <td class="py-4 px-5 text-xs text-gray-600">
+                                    {{ $product->category->categoryname ?? 'General' }}
+                                </td>
+                                <td class="py-4 px-5 text-right font-semibold text-gray-900">
+                                    &#8358;{{ number_format($product->productprice) }}
+                                </td>
+                                <td class="py-4 px-5 text-center">
+                                    @if(($product->status ?? 'waiting') === 'approved')
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">
+                                            Approved
+                                        </span>
+                                    @else
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 uppercase">
+                                            Waiting Approval
+                                        </span>
+                                    @endif
+                                </td>
+                                <td class="py-4 px-5 text-right">
+                                    <div class="inline-flex items-center gap-3 text-xs">
+                                        <a href="{{ route('products.edit', $product->id) }}" class="text-gray-600 hover:text-black font-semibold transition" title="Edit">
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </a>
+                                        <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Delete this product permanently?');" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-gray-400 hover:text-red-600 transition cursor-pointer" title="Delete">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @else
+            <div class="bg-white border border-gray-200 p-16 text-center rounded-sm">
+                <i class="fa-solid fa-boxes-stacked text-4xl text-gray-300 mb-3"></i>
+                <h3 class="text-2xl font-serif text-gray-900 mb-2">No Products in Your Inventory</h3>
+                <p class="text-xs sm:text-sm text-gray-500 mb-6">Start listing products to make them visible to buyers.</p>
+                <a href="{{ route('addProduct') }}" class="px-5 py-2.5 bg-[#f5ce42] hover:bg-[#e6c035] text-black font-semibold text-xs rounded transition shadow-sm">
+                    + Add Your First Product
+                </a>
+            </div>
+        @endif
 
     </div>
 </x-layout>

@@ -1,68 +1,126 @@
 <x-layout>
-    <x-slot:title>Easybuy · {{ ucfirst($role) }} Registration</x-slot:title>
+    <x-slot:title>easybuy · {{ ucfirst($role) }} Registration</x-slot:title>
 
-    <div class="flex-1 flex items-center justify-center px-4 py-10">
-        <div class="w-full max-w-xl border border-[#231f1d] bg-[#faf8f4] p-6 sm:p-9 shadow-sm">
-            <div class="text-center mb-7">
-                <a href="{{ route('register.form') }}" class="font-masthead text-5xl font-black text-[#161413] hover:opacity-70 transition">Easybuy</a>
-                <p class="font-editorial-sans text-[9px] uppercase tracking-[0.25em] text-[#787167] mt-2">{{ ucfirst($role) }} registration</p>
+    <div class="flex-1 flex items-center justify-center px-4 py-12">
+        <div class="w-full max-w-lg bg-white border border-gray-200 p-8 sm:p-10 shadow-sm rounded-sm">
+            
+            <div class="text-center mb-6">
+                <a href="{{ route('dashboard') }}" class="inline-block hover:opacity-85 transition" title="easybuy">
+                    <img src="{{ asset('images/easybuy-logo.png') }}" alt="easybuy" class="h-10 sm:h-11 w-auto object-contain mx-auto">
+                </a>
+                <p class="text-xs font-semibold uppercase tracking-widest text-gray-500 mt-3">
+                    {{ ucfirst($role) }} Registration
+                </p>
             </div>
 
-            <div class="border-t border-[#231f1d] pt-6">
+            <div class="border-t border-gray-200 pt-6">
                 <div class="flex items-center justify-between mb-6">
-                    <h1 class="font-masthead text-3xl text-[#161413]">Create Account</h1>
-                    <a href="{{ route('register.form') }}" class="text-[10px] font-editorial-sans uppercase tracking-[0.15em] text-[#787167] hover:text-[#161413]"><i class="fa-solid fa-arrow-left mr-1"></i> Change role</a>
+                    <h1 class="text-2xl font-serif font-bold text-gray-950">Create Account</h1>
+                    <a href="{{ route('register.form') }}" class="text-xs font-semibold text-gray-500 hover:text-black flex items-center gap-1">
+                        <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                        <span>Change role</span>
+                    </a>
                 </div>
 
                 @if($errors->any())
-                    <div class="mb-6 p-4 border border-[#231f1d] bg-[#f0ebe1] text-[#9b2c2c] text-xs font-serif-body">
-                        <ul class="list-disc list-inside space-y-1">@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>
+                    <div class="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 text-xs rounded-sm">
+                        <ul class="list-disc list-inside space-y-1">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
                     </div>
                 @endif
 
                 <form method="POST" action="{{ route('register.store') }}" class="space-y-4">
                     @csrf
                     <input type="hidden" name="role" value="{{ $role }}">
+
                     <div>
-                        <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">Full Name</label>
-                        <input type="text" name="name" value="{{ old('name') }}" required placeholder="Enter your full name" class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">Full Name</label>
+                        <input type="text" 
+                               name="name" 
+                               value="{{ old('name') }}" 
+                               required 
+                               placeholder="e.g. Samuel Okon" 
+                               class="w-full bg-[#faf9f6] border border-gray-300 rounded-sm px-3.5 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-black transition">
                     </div>
+
                     <div>
-                        <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">Email Address</label>
-                        <input type="email" name="email" value="{{ old('email') }}" required placeholder="you@example.com" class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">Email Address</label>
+                        <input type="email" 
+                               name="email" 
+                               value="{{ old('email') }}" 
+                               required 
+                               placeholder="you@example.com" 
+                               class="w-full bg-[#faf9f6] border border-gray-300 rounded-sm px-3.5 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-black transition">
                     </div>
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">Password</label>
-                            <input type="password" name="password" required placeholder="Create a password" class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">Password</label>
+                            <input type="password" 
+                                   name="password" 
+                                   required 
+                                   placeholder="••••••••" 
+                                   class="w-full bg-[#faf9f6] border border-gray-300 rounded-sm px-3.5 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-black transition">
                         </div>
                         <div>
-                            <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">Confirm Password</label>
-                            <input type="password" name="password_confirmation" required placeholder="Confirm password" class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">Confirm Password</label>
+                            <input type="password" 
+                                   name="password_confirmation" 
+                                   required 
+                                   placeholder="••••••••" 
+                                   class="w-full bg-[#faf9f6] border border-gray-300 rounded-sm px-3.5 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-black transition">
                         </div>
                     </div>
+
                     @if ($role === 'buyer')
                         <div>
-                            <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">Delivery Address</label>
-                            <input type="text" name="shipping_address" value="{{ old('shipping_address') }}" required placeholder="123 city street" class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">Delivery Address</label>
+                            <input type="text" 
+                                   name="shipping_address" 
+                                   value="{{ old('shipping_address') }}" 
+                                   required 
+                                   placeholder="e.g. 15 Marina Street, Lagos" 
+                                   class="w-full bg-[#faf9f6] border border-gray-300 rounded-sm px-3.5 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-black transition">
                         </div>
                     @endif
+
                     @if ($role === 'seller')
                         <div>
-                            <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">Store Name</label>
-                            <input type="text" name="store_name" value="{{ old('store_name') }}" required placeholder="Enter store name" class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">Store Name</label>
+                            <input type="text" 
+                                   name="store_name" 
+                                   value="{{ old('store_name') }}" 
+                                   required 
+                                   placeholder="e.g. Urban Threads NG" 
+                                   class="w-full bg-[#faf9f6] border border-gray-300 rounded-sm px-3.5 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-black transition">
                         </div>
                         <div>
-                            <label class="block text-[11px] font-editorial-sans uppercase tracking-[0.15em] text-[#4a453e] mb-1">Store Address</label>
-                            <input type="text" name="store_address" value="{{ old('store_address') }}" required placeholder="Enter Store Address" class="w-full bg-[#f4efe6] border border-[#cfc8bc] focus:border-[#161413] text-[#161413] px-3.5 py-2.5 text-sm font-serif-body placeholder-[#a39c91] focus:outline-none transition">
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">Store Address</label>
+                            <input type="text" 
+                                   name="store_address" 
+                                   value="{{ old('store_address') }}" 
+                                   required 
+                                   placeholder="e.g. 24 Commercial Avenue, Yaba, Lagos" 
+                                   class="w-full bg-[#faf9f6] border border-gray-300 rounded-sm px-3.5 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-black transition">
                         </div>
                     @endif
-                    <button type="submit" class="w-full py-3.5 bg-[#1a1918] hover:bg-black text-[#f7f4ee] font-editorial-sans text-xs tracking-[0.2em] uppercase transition flex items-center justify-center gap-2 mt-5">
-                        <span>Create {{ ucfirst($role) }} Account</span><i class="fa-solid fa-arrow-right text-[9px]"></i>
+
+                    <button type="submit" 
+                            class="w-full mt-4 py-3 bg-[#f5ce42] hover:bg-[#e6c035] text-black font-semibold text-xs uppercase tracking-widest rounded-sm transition shadow-sm flex items-center justify-center gap-2 cursor-pointer">
+                        <span>Create {{ ucfirst($role) }} Account</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
                     </button>
                 </form>
-                <p class="text-center text-xs font-serif-body text-[#6e6860] mt-5">Already registered? <a href="{{ route('login') }}" class="text-[#161413] underline font-semibold">Sign in</a></p>
+
+                <div class="border-t border-gray-200 mt-6 pt-4 text-center text-xs text-gray-600">
+                    Already have an account? <a href="{{ route('login') }}" class="text-black font-bold hover:underline">Sign in</a>
+                </div>
+
             </div>
+
         </div>
     </div>
 </x-layout>

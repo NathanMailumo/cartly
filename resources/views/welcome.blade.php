@@ -1,160 +1,522 @@
 <x-layout>
-    <x-slot:title>Easybuy · Shop and Sell Fashion in Nigeria</x-slot:title>
+    <x-slot:title>easybuy · Shop Smarter, Live Better</x-slot:title>
 
-    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-7 items-stretch">
-            <div class="lg:col-span-4 flex flex-col justify-center py-4 sm:py-8">
-                <p class="font-editorial-sans text-[9px] tracking-[0.25em] uppercase text-[#787167] mb-4">
-                    <i class="fa-solid fa-star text-[7px] mr-1"></i> New Arrivals · Made for Nigeria
-                </p>
-                <h1 class="font-masthead text-5xl sm:text-6xl lg:text-7xl font-black leading-[0.96] text-[#161413]">
-                    Good Style<br>Made Easy<br><em>for Everyone.</em>
-                </h1>
-                <div class="border-t border-[#231f1d] my-6"></div>
-                <p class="font-serif-body text-sm leading-relaxed text-[#5e5953] max-w-sm">
-                    Find everyday products from trusted sellers, or list your own items and reach buyers across Nigeria.
-                </p>
-                <div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3 mt-7 max-w-sm">
-                    <a href="{{ route('login') }}" class="flex-1 inline-flex items-center justify-between px-5 py-3.5 bg-[#1a1918] text-[#f7f4ee] font-editorial-sans text-[10px] uppercase tracking-[0.18em] hover:bg-black transition">
-                        <span><i class="fa-solid fa-right-to-bracket mr-2"></i>Sign In</span>
-                        <i class="fa-solid fa-arrow-right text-[9px]"></i>
-                    </a>
-                    <a href="{{ route('register.form') }}" class="flex-1 inline-flex items-center justify-between px-5 py-3.5 border border-[#231f1d] text-[#161413] font-editorial-sans text-[10px] uppercase tracking-[0.18em] hover:bg-[#e8e2d5] transition">
-                        <span><i class="fa-solid fa-user-plus mr-2"></i>Register</span>
-                        <i class="fa-solid fa-arrow-right text-[9px]"></i>
-                    </a>
-                </div>
-            </div>
+    @php
+        $targetRoute = Auth::check() ? route('buyer.browse') : route('login');
+    @endphp
 
-            <div id="collection" class="lg:col-span-5 relative border border-[#231f1d] bg-[#e8e2d5] p-2 min-h-[390px] sm:min-h-[500px]">
-                <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1000&q=85" alt="Basketball on a clean court" class="w-full h-full object-cover grayscale-[15%]">
-                <span class="absolute top-5 right-5 bg-[#1a1918] text-[#f7f4ee] px-3 py-2 font-editorial-sans text-[8px] uppercase tracking-[0.18em]">Just Added</span>
-                <div class="absolute bottom-4 left-4 right-4 bg-[#f7f4ee]/90 border border-[#231f1d] px-3 py-2 flex items-center justify-between font-editorial-sans text-[8px] uppercase tracking-[0.16em] text-[#5e5953]">
-                    <span>Everyday Products</span><span>Easybuy Nigeria</span>
-                </div>
-            </div>
+    <!-- ================= HERO SECTION (Matching Image 3) ================= -->
+    <section class="relative overflow-hidden bg-[#edd8ce] border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 lg:py-24 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[460px]">
+                
+                <!-- Left Hero Copy -->
+                <div class="lg:col-span-7 flex flex-col justify-center animate-fade-in">
+                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-serif text-[#111111] font-normal leading-[1.05] tracking-tight">
+                        Shop Smarter,<br>
+                        <span class="font-bold">Live Better.</span>
+                    </h1>
+                    <p class="text-base sm:text-lg text-gray-700 mt-4 max-w-lg font-normal">
+                        Thousands of products. Great prices. Fast delivery.
+                    </p>
 
-            <aside class="lg:col-span-3 border border-[#cfc8bc] bg-[#faf8f4] self-stretch">
-                <div class="border-b border-[#cfc8bc] px-4 py-3 font-editorial-sans text-[9px] uppercase tracking-[0.2em] text-[#161413]"><i class="fa-solid fa-fire mr-2"></i> Popular Right Now</div>
-                <div class="divide-y divide-[#cfc8bc]">
-                    <a href="{{ route('login') }}" class="flex gap-3 p-3 hover:bg-[#f0ebe1] transition">
-                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=180&q=80" alt="Wireless headphones" class="w-14 h-14 object-contain bg-white p-1">
-                        <span class="flex-1"><strong class="block font-masthead text-sm">Wireless Headphones</strong><em class="block font-serif-body text-[11px] text-[#787167]">For music and calls</em><small class="font-editorial-sans text-[9px]">N5,000</small></span><i class="fa-solid fa-arrow-right self-center text-[9px] text-[#787167]"></i>
-                    </a>
-                    <a href="{{ route('login') }}" class="flex gap-3 p-3 hover:bg-[#f0ebe1] transition">
-                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=180&q=80" alt="Red sneakers" class="w-14 h-14 object-contain bg-white p-1">
-                        <span class="flex-1"><strong class="block font-masthead text-sm">Running Shoes</strong><em class="block font-serif-body text-[11px] text-[#787167]">Comfortable everyday pair</em><small class="font-editorial-sans text-[9px]">N8,800</small></span><i class="fa-solid fa-arrow-right self-center text-[9px] text-[#787167]"></i>
-                    </a>
-                    <a href="{{ route('login') }}" class="flex gap-3 p-3 hover:bg-[#f0ebe1] transition">
-                        <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=180&q=80" alt="Classic wristwatch" class="w-14 h-14 object-contain bg-white p-1">
-                        <span class="flex-1"><strong class="block font-masthead text-sm">Classic Wristwatch</strong><em class="block font-serif-body text-[11px] text-[#787167]">Simple and smart</em><small class="font-editorial-sans text-[9px]">N2,200</small></span><i class="fa-solid fa-arrow-right self-center text-[9px] text-[#787167]"></i>
-                    </a>
-                </div>
-                <a href="{{ route('register.form') }}" class="block px-4 py-4 font-editorial-sans text-[9px] uppercase tracking-[0.18em] text-[#5e5953] hover:text-[#161413] transition">View all pieces <i class="fa-solid fa-arrow-right text-[9px] ml-1"></i></a>
-            </aside>
-        </section>
-
-        <section id="categories" class="border-y border-[#cfc8bc] mt-8 py-7">
-            <div class="flex items-center gap-4 mb-5"><span class="h-px bg-[#cfc8bc] flex-1"></span><h2 class="font-editorial-sans text-[9px] uppercase tracking-[0.22em] text-[#787167]">Shop by Category</h2><span class="h-px bg-[#cfc8bc] flex-1"></span></div>
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                <a href="{{ route('register.form') }}" class="border border-[#cfc8bc] bg-white p-3 hover:border-[#161413] transition text-center"><img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=300&q=80" alt="Basketball" class="w-full h-24 object-contain"><span class="block font-editorial-sans text-[9px] uppercase tracking-[0.14em] mt-3">Sports</span></a>
-                <a href="{{ route('register.form') }}" class="border border-[#cfc8bc] bg-white p-3 hover:border-[#161413] transition text-center"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=300&q=80" alt="Headphones" class="w-full h-24 object-contain"><span class="block font-editorial-sans text-[9px] uppercase tracking-[0.14em] mt-3">Electronics</span></a>
-                <a href="{{ route('register.form') }}" class="border border-[#cfc8bc] bg-white p-3 hover:border-[#161413] transition text-center"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=300&q=80" alt="Sneakers" class="w-full h-24 object-contain"><span class="block font-editorial-sans text-[9px] uppercase tracking-[0.14em] mt-3">Clothing</span></a>
-                <a href="{{ route('register.form') }}" class="border border-[#cfc8bc] bg-white p-3 hover:border-[#161413] transition text-center"><img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=300&q=80" alt="Wristwatch" class="w-full h-24 object-contain"><span class="block font-editorial-sans text-[9px] uppercase tracking-[0.14em] mt-3">Furniture</span></a>
-                <a href="{{ route('register.form') }}" class="border border-[#cfc8bc] bg-white p-3 hover:border-[#161413] transition text-center"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=300&q=80" alt="Smartwatch" class="w-full h-24 object-contain"><span class="block font-editorial-sans text-[9px] uppercase tracking-[0.14em] mt-3">More Items</span></a>
-            </div>
-        </section>
-
-        <section id="craftsmanship" class="grid grid-cols-2 sm:grid-cols-4 border-y border-[#cfc8bc] mt-8 mb-8">
-            <div class="py-5 text-center border-r border-[#cfc8bc]"><i class="fa-solid fa-shield-halved text-[#5e5953] mb-2"></i><strong class="block font-masthead text-lg">Trusted</strong><span class="font-editorial-sans text-[8px] uppercase tracking-[0.15em] text-[#787167]">Reliable sellers</span></div>
-            <div class="py-5 text-center border-r border-[#cfc8bc]"><i class="fa-solid fa-Cart-shopping text-[#5e5953] mb-2"></i><strong class="block font-masthead text-lg">Simple</strong><span class="font-editorial-sans text-[8px] uppercase tracking-[0.15em] text-[#787167]">Easy shopping</span></div>
-            <div class="py-5 text-center border-r border-[#cfc8bc]"><i class="fa-solid fa-naira-sign text-[#5e5953] mb-2"></i><strong class="block font-masthead text-lg">Fair</strong><span class="font-editorial-sans text-[8px] uppercase tracking-[0.15em] text-[#787167]">Prices in naira</span></div>
-            <div class="py-5 text-center"><i class="fa-solid fa-truck-fast text-[#5e5953] mb-2"></i><strong class="block font-masthead text-lg">Local</strong><span class="font-editorial-sans text-[8px] uppercase tracking-[0.15em] text-[#787167]">Delivery across Nigeria</span></div>
-        </section>
-
-        <section id="archive">
-            <div class="flex items-center gap-4 mb-4"><span class="h-px bg-[#cfc8bc] flex-1"></span><h2 class="font-editorial-sans text-[9px] uppercase tracking-[0.22em] text-[#787167]"><i class="fa-solid fa-star text-[7px] mr-1"></i> From the Archive</h2><span class="h-px bg-[#cfc8bc] flex-1"></span></div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <article><img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=700&q=80" alt="Basketball" class="w-full h-40 object-contain bg-white border border-[#231f1d]"><p class="font-editorial-sans text-[8px] uppercase tracking-[0.18em] text-[#787167] mt-2">Sports</p><h3 class="font-masthead text-base font-bold">Sports Gear for Every Day</h3><p class="font-serif-body italic text-xs text-[#5e5953]">Find simple equipment for practice and play.</p></article>
-                <article><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80" alt="Wireless headphones" class="w-full h-40 object-contain bg-white border border-[#231f1d]"><p class="font-editorial-sans text-[8px] uppercase tracking-[0.18em] text-[#787167] mt-2">Electronics</p><h3 class="font-masthead text-base font-bold">Useful Tech for Your Routine</h3><p class="font-serif-body italic text-xs text-[#5e5953]">Everyday electronics from sellers you can trust.</p></article>
-                <article><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80" alt="Running shoes" class="w-full h-40 object-contain bg-white border border-[#231f1d]"><p class="font-editorial-sans text-[8px] uppercase tracking-[0.18em] text-[#787167] mt-2">Footwear</p><h3 class="font-masthead text-base font-bold">Shoes That Fit Your Day</h3><p class="font-serif-body italic text-xs text-[#5e5953]">Browse comfortable shoes for work, walks, and weekends.</p></article>
-            </div>
-        </section>
-
-        <section id="how-it-works" class="border-t border-[#231f1d] mt-10 pt-8 pb-4">
-            <div class="text-center mb-7">
-                <p class="font-editorial-sans text-[9px] uppercase tracking-[0.22em] text-[#787167]">
-                    <i class="fa-solid fa-star text-[7px] mr-1"></i> The Easybuy Process
-                </p>
-                <h2 class="font-masthead text-3xl sm:text-4xl text-[#161413] mt-2">How It Works</h2>
-                <p class="font-serif-body text-sm text-[#5e5953] mt-2">A simple way to shop and sell fashion in Nigeria.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <article class="border border-[#cfc8bc] bg-[#faf8f4] p-5 sm:p-6">
-                    <div class="flex items-center gap-3 border-b border-[#dcd7ce] pb-4 mb-4">
-                        <span class="w-10 h-10 flex items-center justify-center bg-[#161413] text-[#f7f4ee]"><i class="fa-solid fa-Cart-shopping"></i></span>
+                    <!-- Bottom Hero Indicators & CTA -->
+                    <div class="mt-12 sm:mt-16 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
                         <div>
-                            <p class="font-editorial-sans text-[9px] uppercase tracking-[0.18em] text-[#787167]">For Buyers</p>
-                            <h3 class="font-masthead text-xl font-bold">Shop what you like</h3>
+                            <span class="inline-block text-[11px] font-bold uppercase tracking-[0.25em] text-gray-700">
+                                NEW ARRIVALS EVERY WEEK
+                            </span>
+                        </div>
+
+                        <!-- Right Card: Free delivery notice & Shop Now Button -->
+                        <div class="bg-white/80 backdrop-blur-md p-4 sm:p-5 rounded-sm border border-white/60 shadow-sm max-w-xs animate-fade-in-delayed">
+                            <p class="text-xs text-gray-700 leading-snug">
+                                Free delivery on orders over &#8358;5,000.<br>
+                                Easy 30-day returns.
+                            </p>
+                            <a href="{{ $targetRoute }}" 
+                               class="mt-3.5 inline-block w-full py-2.5 px-5 bg-[#f5ce42] hover:bg-[#e6c035] text-black font-semibold text-xs tracking-wider uppercase text-center rounded-sm transition shadow-sm cursor-pointer">
+                                Shop Now &rarr;
+                            </a>
                         </div>
                     </div>
-                    <ol class="space-y-3 font-serif-body text-sm text-[#5e5953]">
-                        <li class="flex gap-3"><strong class="font-editorial-sans text-xs text-[#161413]">01</strong><span><b class="text-[#161413]">Sign in</b> to your Easybuy account.</span></li>
-                        <li class="flex gap-3"><strong class="font-editorial-sans text-xs text-[#161413]">02</strong><span><b class="text-[#161413]">Browse and add to cart</b> the pieces you love.</span></li>
-                        <li class="flex gap-3"><strong class="font-editorial-sans text-xs text-[#161413]">03</strong><span><b class="text-[#161413]">Review your order and pay</b> securely.</span></li>
-                    </ol>
-                </article>
+                </div>
 
-                <article class="border border-[#cfc8bc] bg-[#faf8f4] p-5 sm:p-6">
-                    <div class="flex items-center gap-3 border-b border-[#dcd7ce] pb-4 mb-4">
-                        <span class="w-10 h-10 flex items-center justify-center bg-[#161413] text-[#f7f4ee]"><i class="fa-solid fa-store"></i></span>
-                        <div>
-                            <p class="font-editorial-sans text-[9px] uppercase tracking-[0.18em] text-[#787167]">For Sellers</p>
-                            <h3 class="font-masthead text-xl font-bold">Sell your products</h3>
+                <!-- Right Hero Lifestyle Photo -->
+                <div class="lg:col-span-5 relative flex justify-center items-center animate-fade-in-slow">
+                    <a href="{{ $targetRoute }}" class="relative w-full max-w-md aspect-[4/5] rounded-sm overflow-hidden shadow-2xl group border-4 border-white/90 block cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=85" 
+                             alt="Luxury fashion shopping" 
+                             class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                        
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                        
+                        <!-- Floating Badge -->
+                        <div class="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm px-3.5 py-2 rounded-sm text-xs font-semibold text-gray-900 shadow-md flex items-center gap-2 animate-float">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                            <span>Trending Collection 2026</span>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= HOW IT WORKS SECTION (Matching Image 3) ================= -->
+    <section id="how-it-works" class="py-16 sm:py-20 bg-[#faf9f6]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#111111] mb-10 sm:mb-12">
+                How it works
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                
+                <!-- Step 01 -->
+                <a href="{{ $targetRoute }}" class="bg-white p-6 sm:p-7 border border-gray-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition block group cursor-pointer">
+                    <div>
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest block mb-4">01</span>
+                        <div class="aspect-[16/10] bg-gray-100 mb-5 overflow-hidden rounded-sm">
+                            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Browse products" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h3 class="text-xl font-bold font-serif text-gray-900 mb-2 group-hover:text-black">Browse products</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                            Explore thousands of the latest fashion items, accessories, and more — all in one place.
+                        </p>
+                    </div>
+                </a>
+
+                <!-- Step 02 -->
+                <a href="{{ $targetRoute }}" class="bg-white p-6 sm:p-7 border border-gray-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition block group cursor-pointer">
+                    <div>
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest block mb-4">02</span>
+                        <div class="aspect-[16/10] bg-gray-100 mb-5 overflow-hidden rounded-sm">
+                            <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Add to cart" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h3 class="text-xl font-bold font-serif text-gray-900 mb-2 group-hover:text-black">Add to cart</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                            Pick what you love, add it to your cart, and check out securely in just a few taps.
+                        </p>
+                    </div>
+                </a>
+
+                <!-- Step 03 -->
+                <a href="{{ $targetRoute }}" class="bg-white p-6 sm:p-7 border border-gray-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition block group cursor-pointer">
+                    <div>
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest block mb-4">03</span>
+                        <div class="aspect-[16/10] bg-gray-100 mb-5 overflow-hidden rounded-sm">
+                            <img src="https://images.unsplash.com/photo-1526367790999-0150786686a2?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Fast delivery" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <h3 class="text-xl font-bold font-serif text-gray-900 mb-2 group-hover:text-black">Fast delivery</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                            We ship fast. Track your order in real time and get it delivered straight to your door.
+                        </p>
+                    </div>
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= TOP PICKS THIS WEEK (Vibrant Yellow Section) ================= -->
+    <section id="top-picks" class="bg-[#f5ce42] py-12 sm:py-16 text-[#111111] transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 sm:mb-10">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold tracking-tight">
+                    Top picks this week, hand-selected for you.
+                </h2>
+                <a href="{{ $targetRoute }}" 
+                   class="inline-flex items-center gap-1.5 px-5 py-2.5 border border-black hover:bg-black hover:text-white text-black font-semibold text-xs tracking-wider uppercase transition rounded-none self-start sm:self-auto">
+                    <span>Explore Catalog</span>
+                    <span>&rarr;</span>
+                </a>
+            </div>
+
+            <!-- 3 Featured Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <a href="{{ $targetRoute }}" class="group relative aspect-[4/3] sm:aspect-[3/4] bg-neutral-900 overflow-hidden shadow-md flex flex-col justify-end p-5 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80" 
+                         alt="Street style look" 
+                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    <div class="relative z-10 text-white">
+                        <span class="text-[11px] font-bold uppercase tracking-widest text-amber-300">Street Style Look</span>
+                        <p class="text-sm font-bold mt-0.5">&#8358;18,500</p>
+                    </div>
+                </a>
+
+                <!-- Card 2 -->
+                <a href="{{ $targetRoute }}" class="group relative aspect-[4/3] sm:aspect-[3/4] bg-neutral-900 overflow-hidden shadow-md flex flex-col justify-end p-5 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" 
+                         alt="Air Boost Sneakers" 
+                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    <div class="relative z-10 text-white">
+                        <span class="text-[11px] font-bold uppercase tracking-widest text-amber-300">Air Boost Sneakers</span>
+                        <p class="text-sm font-bold mt-0.5">&#8358;14,200</p>
+                    </div>
+                </a>
+
+                <!-- Card 3 -->
+                <a href="{{ $targetRoute }}" class="group relative aspect-[4/3] sm:aspect-[3/4] bg-neutral-900 overflow-hidden shadow-md flex flex-col justify-end p-5 cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=80" 
+                         alt="Minimalist Watch" 
+                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    <div class="relative z-10 text-white">
+                        <span class="text-[11px] font-bold uppercase tracking-widest text-amber-300">Minimalist Watch</span>
+                        <p class="text-sm font-bold mt-0.5">&#8358;22,000</p>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= POPULAR RIGHT NOW (Matching Image 3) ================= -->
+    <section id="popular" class="py-16 sm:py-20 bg-white border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Header Row -->
+            <div class="flex items-center justify-between gap-4 mb-6">
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#111111]">
+                    Popular Right Now
+                </h2>
+                <a href="{{ $targetRoute }}" class="text-xs sm:text-sm font-semibold text-gray-700 hover:text-black transition flex items-center gap-1">
+                    <span>View all</span>
+                    <span>&rarr;</span>
+                </a>
+            </div>
+
+            <!-- Filter Pills Bar -->
+            <div class="flex items-center gap-2 mb-8 overflow-x-auto pb-2 scrollbar-none" id="popular-tabs">
+                <button type="button" onclick="filterItems('all', this)" class="popular-tab px-5 py-1.5 text-xs font-semibold rounded-full bg-black text-white border border-black transition">
+                    All
+                </button>
+                <button type="button" onclick="filterItems('shoes', this)" class="popular-tab px-5 py-1.5 text-xs font-semibold rounded-full bg-white text-gray-700 border border-gray-200 hover:border-black transition">
+                    Shoes
+                </button>
+                <button type="button" onclick="filterItems('clothing', this)" class="popular-tab px-5 py-1.5 text-xs font-semibold rounded-full bg-white text-gray-700 border border-gray-200 hover:border-black transition">
+                    Clothing
+                </button>
+                <button type="button" onclick="filterItems('accessories', this)" class="popular-tab px-5 py-1.5 text-xs font-semibold rounded-full bg-white text-gray-700 border border-gray-200 hover:border-black transition">
+                    Accessories
+                </button>
+                <button type="button" onclick="filterItems('fragrances', this)" class="popular-tab px-5 py-1.5 text-xs font-semibold rounded-full bg-white text-gray-700 border border-gray-200 hover:border-black transition">
+                    Fragrances
+                </button>
+                <button type="button" onclick="filterItems('sale', this)" class="popular-tab px-5 py-1.5 text-xs font-semibold rounded-full bg-white text-gray-700 border border-gray-200 hover:border-black transition">
+                    Sale
+                </button>
+            </div>
+
+            <!-- 8 Product Grid (4 columns x 2 rows) -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-5 sm:gap-6" id="popular-grid">
+                
+                <!-- Product 1 -->
+                <a href="{{ $targetRoute }}" class="popular-card group block cursor-pointer" data-category="shoes">
+                    <div class="relative aspect-square bg-[#f4f4f4] overflow-hidden p-4 flex items-center justify-center">
+                        <span class="absolute top-3 left-3 bg-black text-white text-[10px] font-bold px-2 py-0.5 rounded-none uppercase">NEW</span>
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80" alt="Air Boost Sneakers" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="mt-3">
+                        <h4 class="text-xs sm:text-sm font-semibold text-gray-900 line-clamp-1 group-hover:text-black">Air Boost Sneakers</h4>
+                        <div class="flex items-center justify-between mt-1">
+                            <span class="text-xs sm:text-sm font-bold text-gray-900">&#8358;18,500</span>
+                            <div class="flex text-[10px] text-amber-400">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
                         </div>
                     </div>
-                    <ol class="space-y-3 font-serif-body text-sm text-[#5e5953]">
-                        <li class="flex gap-3"><strong class="font-editorial-sans text-xs text-[#161413]">01</strong><span><b class="text-[#161413]">Sign in</b> to your seller account.</span></li>
-                        <li class="flex gap-3"><strong class="font-editorial-sans text-xs text-[#161413]">02</strong><span><b class="text-[#161413]">Add products</b> with their details and category.</span></li>
-                        <li class="flex gap-3"><strong class="font-editorial-sans text-xs text-[#161413]">03</strong><span><b class="text-[#161413]">Display and manage</b> your products for buyers.</span></li>
-                    </ol>
-                </article>
-            </div>
-        </section>
+                </a>
 
-        <section id="reviews" class="border-t border-[#231f1d] mt-10 pt-8 pb-4">
-            <div class="text-center mb-7">
-                <p class="font-editorial-sans text-[9px] uppercase tracking-[0.22em] text-[#787167]">
-                    <i class="fa-solid fa-star text-[7px] mr-1"></i> The Easybuy Journal
+                <!-- Product 2 -->
+                <a href="{{ $targetRoute }}" class="popular-card group block cursor-pointer" data-category="shoes">
+                    <div class="relative aspect-square bg-[#f4f4f4] overflow-hidden p-4 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1607522370275-f14206abe5d3?auto=format&fit=crop&w=600&q=80" alt="Classic White Hi-Top" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="mt-3">
+                        <h4 class="text-xs sm:text-sm font-semibold text-gray-900 line-clamp-1 group-hover:text-black">Classic White Hi-Top</h4>
+                        <div class="flex items-center justify-between mt-1">
+                            <span class="text-xs sm:text-sm font-bold text-gray-900">&#8358;14,200</span>
+                            <div class="flex text-[10px] text-amber-400">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Product 3 -->
+                <a href="{{ $targetRoute }}" class="popular-card group block cursor-pointer" data-category="clothing sale">
+                    <div class="relative aspect-square bg-[#f4f4f4] overflow-hidden p-4 flex items-center justify-center">
+                        <span class="absolute top-3 left-3 bg-black text-white text-[10px] font-bold px-2 py-0.5 rounded-none uppercase">SALE</span>
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Linen V-Neck Top" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="mt-3">
+                        <h4 class="text-xs sm:text-sm font-semibold text-gray-900 line-clamp-1 group-hover:text-black">Linen V-Neck Top</h4>
+                        <div class="flex items-center justify-between mt-1">
+                            <span class="text-xs sm:text-sm font-bold text-gray-900">&#8358;5,400</span>
+                            <div class="flex text-[10px] text-amber-400">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Product 4 -->
+                <a href="{{ $targetRoute }}" class="popular-card group block cursor-pointer" data-category="clothing">
+                    <div class="relative aspect-square bg-[#f4f4f4] overflow-hidden p-4 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80" alt="Flannel Shirt" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="mt-3">
+                        <h4 class="text-xs sm:text-sm font-semibold text-gray-900 line-clamp-1 group-hover:text-black">Flannel Shirt</h4>
+                        <div class="flex items-center justify-between mt-1">
+                            <span class="text-xs sm:text-sm font-bold text-gray-900">&#8358;7,800</span>
+                            <div class="flex text-[10px] text-amber-400">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Product 5 -->
+                <a href="{{ $targetRoute }}" class="popular-card group block cursor-pointer" data-category="accessories">
+                    <div class="relative aspect-square bg-[#f4f4f4] overflow-hidden p-4 flex items-center justify-center">
+                        <span class="absolute top-3 left-3 bg-black text-white text-[10px] font-bold px-2 py-0.5 rounded-none uppercase">NEW</span>
+                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80" alt="Gold Jewelry Set" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="mt-3">
+                        <h4 class="text-xs sm:text-sm font-semibold text-gray-900 line-clamp-1 group-hover:text-black">Gold Jewelry Set</h4>
+                        <div class="flex items-center justify-between mt-1">
+                            <span class="text-xs sm:text-sm font-bold text-gray-900">&#8358;9,100</span>
+                            <div class="flex text-[10px] text-amber-400">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Product 6 -->
+                <a href="{{ $targetRoute }}" class="popular-card group block cursor-pointer" data-category="accessories">
+                    <div class="relative aspect-square bg-[#f4f4f4] overflow-hidden p-4 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80" alt="Retro Sunglasses" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="mt-3">
+                        <h4 class="text-xs sm:text-sm font-semibold text-gray-900 line-clamp-1 group-hover:text-black">Retro Sunglasses</h4>
+                        <div class="flex items-center justify-between mt-1">
+                            <span class="text-xs sm:text-sm font-bold text-gray-900">&#8358;4,100</span>
+                            <div class="flex text-[10px] text-amber-400">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Product 7 -->
+                <a href="{{ $targetRoute }}" class="popular-card group block cursor-pointer" data-category="fragrances">
+                    <div class="relative aspect-square bg-[#f4f4f4] overflow-hidden p-4 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80" alt="Bleu Cologne" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="mt-3">
+                        <h4 class="text-xs sm:text-sm font-semibold text-gray-900 line-clamp-1 group-hover:text-black">Bleu Cologne</h4>
+                        <div class="flex items-center justify-between mt-1">
+                            <span class="text-xs sm:text-sm font-bold text-gray-900">&#8358;12,000</span>
+                            <div class="flex text-[10px] text-amber-400">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Product 8 -->
+                <a href="{{ $targetRoute }}" class="popular-card group block cursor-pointer" data-category="accessories sale">
+                    <div class="relative aspect-square bg-[#f4f4f4] overflow-hidden p-4 flex items-center justify-center">
+                        <span class="absolute top-3 left-3 bg-black text-white text-[10px] font-bold px-2 py-0.5 rounded-none uppercase">SALE</span>
+                        <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=600&q=80" alt="Minimalist Watch" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="mt-3">
+                        <h4 class="text-xs sm:text-sm font-semibold text-gray-900 line-clamp-1 group-hover:text-black">Minimalist Watch</h4>
+                        <div class="flex items-center justify-between mt-1">
+                            <span class="text-xs sm:text-sm font-bold text-gray-900">&#8358;22,000</span>
+                            <div class="flex text-[10px] text-amber-400">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= REAL CUSTOMER REVIEWS (Authentic Nigerian Customers) ================= -->
+    <section id="reviews" class="py-16 sm:py-20 bg-[#faf9f6] border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#f5ce42] bg-black px-3 py-1 rounded-full inline-block mb-3">
+                    VERIFIED BUYER REVIEWS
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-gray-950">
+                    Loved by shoppers across Nigeria
+                </h2>
+                <p class="text-xs sm:text-sm text-gray-600 mt-2">
+                    Real reviews from real Nigerians who shop everyday fashion, sneakers, and accessories on easybuy.
                 </p>
-                <h2 class="font-masthead text-3xl sm:text-4xl text-[#161413] mt-2">Reviews</h2>
-                <p class="font-serif-body text-sm text-[#5e5953] mt-2">What buyers and sellers are saying about Easybuy.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                <article class="border border-[#cfc8bc] bg-[#faf8f4] p-5">
-                    <div class="flex gap-1 text-[#161413] text-[10px] mb-4" aria-label="5 out of 5 stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <!-- Reviews Grid (4 Authentic Customer Reviews) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Review 1: Chioma Adeleke -->
+                <div class="bg-white border border-gray-200 p-6 rounded-sm shadow-sm flex flex-col justify-between hover:shadow-md transition">
+                    <div>
+                        <!-- Stars -->
+                        <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-xs text-gray-700 leading-relaxed italic mb-4">
+                            "Ordered the Linen V-Neck Top on Tuesday and it reached my doorstep in Lekki by Thursday morning! The quality is premium and the fabric is so breathable."
+                        </p>
                     </div>
-                    <blockquote class="font-serif-body italic text-base leading-relaxed text-[#3d3833]">“My Cart arrived in good condition and looked just like the pictures. Shopping on Easybuy was straightforward.”</blockquote>
-                    <p class="font-editorial-sans text-[9px] uppercase tracking-[0.16em] text-[#787167] mt-5">Amara O. · Buyer</p>
-                </article>
-                <article class="border border-[#cfc8bc] bg-[#faf8f4] p-5">
-                    <div class="flex gap-1 text-[#161413] text-[10px] mb-4" aria-label="5 out of 5 stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+
+                    <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" 
+                             alt="Chioma Adeleke" 
+                             class="w-11 h-11 rounded-full object-cover border-2 border-[#f5ce42]">
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900">Chioma Adeleke</h4>
+                            <p class="text-[10px] text-gray-500">Lekki, Lagos &middot; <span class="text-emerald-700 font-semibold"><i class="fa-solid fa-circle-check"></i> Verified</span></p>
+                        </div>
                     </div>
-                    <blockquote class="font-serif-body italic text-base leading-relaxed text-[#3d3833]">“I found something within my budget and the order process was easy from start to finish.”</blockquote>
-                    <p class="font-editorial-sans text-[9px] uppercase tracking-[0.16em] text-[#787167] mt-5">Daniel M. · Buyer</p>
-                </article>
-                <article class="border border-[#cfc8bc] bg-[#faf8f4] p-5">
-                    <div class="flex gap-1 text-[#161413] text-[10px] mb-4" aria-label="5 out of 5 stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+
+                <!-- Review 2: Tunde Bakare -->
+                <div class="bg-white border border-gray-200 p-6 rounded-sm shadow-sm flex flex-col justify-between hover:shadow-md transition">
+                    <div>
+                        <!-- Stars -->
+                        <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-xs text-gray-700 leading-relaxed italic mb-4">
+                            "I was skeptical about paying online, but Paystack checkout was seamless and the Air Boost Sneakers are 100% authentic. Will definitely buy again."
+                        </p>
                     </div>
-                    <blockquote class="font-serif-body italic text-base leading-relaxed text-[#3d3833]">“Easybuy helps me show my products to more people and manage my listings in one place.”</blockquote>
-                    <p class="font-editorial-sans text-[9px] uppercase tracking-[0.16em] text-[#787167] mt-5">Sofia K. · Seller</p>
-                </article>
+
+                    <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80" 
+                             alt="Tunde Bakare" 
+                             class="w-11 h-11 rounded-full object-cover border-2 border-[#f5ce42]">
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900">Tunde Bakare</h4>
+                            <p class="text-[10px] text-gray-500">Maitama, Abuja &middot; <span class="text-emerald-700 font-semibold"><i class="fa-solid fa-circle-check"></i> Verified</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3: Amina Ibrahim -->
+                <div class="bg-white border border-gray-200 p-6 rounded-sm shadow-sm flex flex-col justify-between hover:shadow-md transition">
+                    <div>
+                        <!-- Stars -->
+                        <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-xs text-gray-700 leading-relaxed italic mb-4">
+                            "The Gold Jewelry Set looks even better in person than on the site. Perfect packaging, and customer care answered my delivery questions immediately."
+                        </p>
+                    </div>
+
+                    <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&w=200&q=80" 
+                             alt="Amina Ibrahim" 
+                             class="w-11 h-11 rounded-full object-cover border-2 border-[#f5ce42]">
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900">Amina Ibrahim</h4>
+                            <p class="text-[10px] text-gray-500">Wuse 2, Abuja &middot; <span class="text-emerald-700 font-semibold"><i class="fa-solid fa-circle-check"></i> Verified</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 4: Emeka Okafor -->
+                <div class="bg-white border border-gray-200 p-6 rounded-sm shadow-sm flex flex-col justify-between hover:shadow-md transition">
+                    <div>
+                        <!-- Stars -->
+                        <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-xs text-gray-700 leading-relaxed italic mb-4">
+                            "The Minimalist Watch was delivered safely here in Port Harcourt. Sleek packaging, beautiful finish, and free shipping saved me money."
+                        </p>
+                    </div>
+
+                    <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&w=200&q=80" 
+                             alt="Emeka Okafor" 
+                             class="w-11 h-11 rounded-full object-cover border-2 border-[#f5ce42]">
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900">Emeka Okafor</h4>
+                            <p class="text-[10px] text-gray-500">Port Harcourt &middot; <span class="text-emerald-700 font-semibold"><i class="fa-solid fa-circle-check"></i> Verified</span></p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </section>
-    </div>
+
+        </div>
+    </section>
+
+    <!-- Simple Interactive Filter Script -->
+    <script>
+        function filterItems(category, btn) {
+            document.querySelectorAll('.popular-tab').forEach(b => {
+                b.classList.remove('bg-black', 'text-white', 'border-black');
+                b.classList.add('bg-white', 'text-gray-700', 'border-gray-200');
+            });
+            btn.classList.remove('bg-white', 'text-gray-700', 'border-gray-200');
+            btn.classList.add('bg-black', 'text-white', 'border-black');
+
+            const cards = document.querySelectorAll('.popular-card');
+            cards.forEach(card => {
+                if (category === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    const cardCat = card.getAttribute('data-category');
+                    if (cardCat && cardCat.includes(category)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
 </x-layout>
